@@ -1,0 +1,7 @@
+import {seed,evaluate,type Issue,type UIState} from './domain';
+const KEY='empire-demo-v2';
+export class IssueRepository {
+ query(issues:Issue[],query:UIState){return evaluate(issues,query)}
+ load():{issues:Issue[];error:boolean}{try{const raw=localStorage.getItem(KEY);if(!raw)return {issues:seed(),error:false};const data=JSON.parse(raw);if(!Array.isArray(data)||!data.every(i=>typeof i.id==='string'&&typeof i.title==='string'&&Array.isArray(i.dependencies)&&['backlog','todo','in_progress','review','completed','cancelled'].includes(i.status)))throw Error('Invalid demo');const baseline=seed();const originals=new Map(baseline.map(issue=>[issue.id,issue]));const merged=data.map(i=>{const original=originals.get(i.id);return {...original,...i,area:i.area??original?.area??'web',assigneeId:i.id==='demo-issue-103'&&i.assigneeId==='u-sara'?'agent-hermes':i.assigneeId,descriptionEn:i.descriptionEn??original?.descriptionEn??i.description,agentId:i.agentId??original?.agentId,acceptanceCriteriaEn:i.acceptanceCriteriaEn??original?.acceptanceCriteriaEn??i.acceptanceCriteria,blockerReasonEn:i.blockerReasonEn??original?.blockerReasonEn??i.blockerReason,comments:i.comments.map((c:Record<string,string>,n:number)=>({...original?.comments[n],...c}))}}) as Issue[];const known=new Set(merged.map(issue=>issue.id));return {issues:[...merged,...baseline.filter(issue=>!known.has(issue.id))],error:false};}catch{return {issues:seed(),error:true}}}
+ save(issues:Issue[]){try{localStorage.setItem(KEY,JSON.stringify(issues));return true}catch{return false}}
+}
