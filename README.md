@@ -71,3 +71,7 @@ The canonical review fixture now has **14 issues / 8 remaining / 2 blocked**. EM
 [Implementation and review report](docs/IMPLEMENTATION_REPORT.md) · [Actual screenshots](docs/screenshots/redesign/)
 
 Status: **awaiting_prototype_review**. No Stage 2 work is authorized or implemented.
+
+## Work Flow review
+
+Open **Work Flow** in the left menu, or the compact Work Flow button on mobile. This separate payment-release demo shows PAY-38 → PAY-42/PAY-46 → PAY-51. Click a connector for its rule, use **Show blockers**, pan/zoom/**Fit view**, or open a card for details. Change PAY-42 and PAY-46 to **Done** in their drawers to make PAY-51 **Ready**; **Reset demo** restores the four payment issues. Try `Why is PAY-51 waiting?` in the command input and watch the main graph change. See [implementation report](docs/IMPLEMENTATION_REPORT.md) for verified behavior and screenshots.

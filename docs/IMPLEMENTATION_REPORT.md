@@ -122,3 +122,17 @@ These are real browser captures. Screenshots in the parent screenshots directory
 The assistant is deterministic and supports the documented journeys and examples, not unrestricted language. No LLM or backend is connected. Drafts are stored in this browser only; resetting issue data preserves separately saved drafts. There is no recipient, external send, scheduled follow-up, date editor, advanced planning engine or risk prediction. Local storage and browser filters are not an authorization boundary.
 
 Setup and exact review steps are in `README.md`. The local preview is http://127.0.0.1:5173. Passing checks is not visual approval. Stop here for the user's visual and interaction review.
+
+## Work Flow review addition — 2026-10-25
+
+Status remains `awaiting_prototype_review`. The new Work Flow is a separate navigation item and a local payment-flow demo. The Sprint 12 issue fixture and its existing List, Board and Timeline remain independent. The prompt supplied an ASCII composition and behavior specification; no image file was attached, so the visual implementation follows the written reference.
+
+The fixture in `src/paymentGraph.ts` contains PAY-38, PAY-42, PAY-46, PAY-51 and exactly four directed edges. The layout derives columns from graph depth and vertical lanes from nodes at each depth. Graph validation rejects unknown references, duplicate edges, self-dependencies and cycles. PAY-51 readiness is derived from both predecessor statuses. PAY-42 and PAY-46 can be edited locally through the existing detail-drawer surface; Work Flow Reset restores their initial values. Nothing is sent or persisted to an external system.
+
+Open **Work Flow** in the left menu (or its compact mobile entry). The demo commands `Show the payment release workflow`, `Why is PAY-51 waiting?`, `Show the path from PAY-38 to PAY-51`, `Open PAY-42` and `Back` change the main workspace and navigation history. The command adapter is simulated and limited to documented phrases. Card focus/hover highlights connected edges; connector click or Enter reveals its dependency sentence. Show blockers identifies PAY-42 and PAY-46, excluding completed PAY-38. Pan, zoom and Fit view work on desktop; mobile uses a scrollable, readable stacked dependency order. English/LTR is the default; Persian/RTL and light/dark work in this view.
+
+Verification on this update: `npm run typecheck` passed; `npm test` passed **22/22**; `npm run build` passed; `npm run test:e2e` passed **13/13** in installed Chrome. Work Flow browser checks additionally cover the four rendered edges, connector explanation, pan/zoom/Fit, two paths, command-driven highlighting, drawer context and preserved zoom, prerequisite details, derived Ready, Reset, 390px mobile, Persian RTL and light/dark. Existing List, Board and Timeline journeys were included in the full suite.
+
+Actual browser screenshots: [desktop dark](screenshots/workflow-desktop-dark.png), [desktop light](screenshots/workflow-desktop-light.png), [Ready after both prerequisites complete](screenshots/workflow-ready.png), [mobile dark top](screenshots/workflow-mobile-dark.png), [mobile after scrolling to PAY-51](screenshots/workflow-mobile-end.png), [mobile Persian RTL](screenshots/workflow-mobile-fa.png).
+
+Run with `npm ci` then `npm run dev -- --port 5173` and open http://127.0.0.1:5173/?design=current . This is a bounded dependency viewer, not an automation editor, approval service or project engine. The local status changes reset on page reload. The visual and interaction review remains with the user.
