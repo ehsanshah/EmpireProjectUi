@@ -17,7 +17,7 @@ test('opt-in glass preview preserves the current design and working context',asy
  await command.fill('Why is delivery at risk?');await command.press('Enter');
  await expect(page.locator('[data-issue]')).toHaveCount(2);
  await page.screenshot({path:'docs/screenshots/glass-preview/02-investigation.png'});
- await page.getByRole('button',{name:'Previous design',exact:true}).click();
+ await page.getByRole('button',{name:'Classic',exact:true}).click();
  await expect(page.getByTestId('risk-investigation')).toBeVisible();
  await expect(page.locator('html')).toHaveAttribute('data-design','current');
  await page.getByRole('button',{name:'Back',exact:true}).click();

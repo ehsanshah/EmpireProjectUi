@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "source_contract_sha256": "2a5e77a1d7cf06007d3ed4072fed637c4d8bb612d3b3b43dec88eb5cd773f951",
+  "phase_count": 16,
+  "source_api_catalog_rows": 44,
+  "source_acceptance_cases": 20,
+  "feature_rows": 45,
+  "files": [
+    {
+      "path": "AGENTS_APPEND_EN.md",
+      "sha256": "5ce61966d916de87a8ac923b56680d1e903a7b87bd39253434b7c7b9e487e2d5"
+    },
+    {
+      "path": "AI_CLARIFICATION_UX_EN.md",
+      "sha256": "c4cdc4daa99c7a1ad2a9c3d68b654ade7f38ed4a816290e88d31868b6e1d236c"
+    },
+    {
+      "path": "CONTINUE_EN.md",
+      "sha256": "1c5f9b052c3fb4f90468245c914164f85d6d2ee5aea0bd26d1c8414e8c4984aa"
+    },
+    {
+      "path": "CONTRACT_DECISIONS.md",
+      "sha256": "e49607b11caa5ddfd860fb911bb39e0cf92ea1a4efef270689e85dbfa1839ec3"
+    },
+    {
+      "path": "FEATURE_COVERAGE.csv",
+      "sha256": "c833bec627b363dd3de48095b96d3a7c53342aa2aeeaa5a299f2c4ea3f35f9f0"
+    },
+    {
+      "path": "PROJECT_RULES_EN.md",
+      "sha256": "7c1d7cf026d5afba48e80748974d21bc1e529f0dae066dd4b2fba57245140ff5"
+    },
+    {
+      "path": "PROJECT_STATE.json",
+      "sha256": "1fd44c854382e01ba63eee53a5f532a689f838545fac42b726a83d38b69d0bfa"
+    },
+    {
+      "path": "README_FA.md",
+      "sha256": "12e8d9c6958e244278e0b86e5f84137f0739364d8e8657dbfb3538757d2c3290"
+    },
+    {
+      "path": "REFERENCE_INTERACTIONS.md",
+      "sha256": "fc2fb4bc7f5acd825c259827fb6a1b4396c015de818bc7dbade4ad38bf6d4da0"
+    },
+    {
+      "path": "REVISE_EN.md",
+      "sha256": "0549b45975d530336ec126d6dcf51a1485f5142b3d2585c8dc0d2faddf596921"
+    },
+    {
+      "path": "ROADMAP_FA.md",
+      "sha256": "92c7050af3a41f56d4e8d129a51bff2339acfe3be99155a97fdc51bd5f6b5934"
+    },
+    {
+      "path": "START_HERE_EN.md",
+      "sha256": "be316f484035d0edbb0ffd4efc228562b1853d82e1c4026d3230ed1381a7a9e3"
+    },
+    {
+      "path": "UIAPI_TRACEABILITY.csv",
+      "sha256": "57762ea60235c4364a3230eafe38e4756c9328de9eda36eee8021587ac719ded"
+    },
+    {
+      "path": "UI_UX_REVIEW_GATE.md",
+      "sha256": "f02b6bb64e6af2b988f84bd5fcefcf7caf9fd2438799bdd207d6c1462c339480"
+    },
+    {
+      "path": "contracts/ENGINE_INPUTS_FA.md",
+      "sha256": "080781b4012fb202476b8c08ca68da363e2d201bf6efee1b7d96d653011db5cd"
+    },
+    {
+      "path": "contracts/ENGINE_MAPPING.csv",
+      "sha256": "0c307a1e90e9cf2b232edba2f61ea85a558a7e051a3ccca7dfaf0b4575935df1"
+    },
+    {
+      "path": "evidence/README.md",
+      "sha256": "03ab5fb02b3bd77d9cfe7c85fe3247efe849052d48a13763ed213debdae78821"
+    },
+    {
+      "path": "phases/00_REPOSITORY_AUDIT.md",
+      "sha256": "37ca89ce992f6cdeb7d94ffc2b432fcfd793ee1a190284ff02c83a84d7829737"
+    },
+    {
+      "path": "phases/01_CONSOLIDATE_DESIGN_SYSTEM_SHELL_AND_PROJECT_SWITCHING.md",
+      "sha256": "83bea2a353f322be50283242853cebcde4021198d82eab630e33406882ba6437"
+    },
+    {
+      "path": "phases/02_TYPED_API_SEAM_AND_CORE_VERTICAL_SLICE.md",
+      "sha256": "64c955988067c26f409dcc992b2924857de4e469ff18eee1904d1d86567deb51"
+    },
+    {
+      "path": "phases/03_COMPLETE_WORKITEM_LIST_FORMS_AND_SCOPED_SEARCH.md",
+      "sha256": "3f5f97f5642d9c17474bc6f10766536a9acc1a34ac5fb196e7bb76c8663481d4"
+    },
+    {
+      "path": "phases/04_BOARD_KANBAN_BEHAVIOR_AND_DEPENDENCY_WORK_FLOW.md",
+      "sha256": "3645f17034730c4933aaf4b3a2b2027da5129a7d03e924df21f58b5ad3de0beb"
+    },
+    {
+      "path": "phases/05_CALENDAR_SCHEDULING_ADAPTER_AND_TIMELINE.md",
+      "sha256": "1aef2e9facd5f1bba1c4572e6d3ac9636bde638cf07422072832b8d33c1a35c3"
+    },
+    {
+      "path": "phases/06_BACKLOG_SPRINT_AND_CAPACITY_PLANNING.md",
+      "sha256": "0a71bb43df6150f41a55d814573c0d6c35f34070ab9bacad84cff5d90a2873c9"
+    },
+    {
+      "path": "phases/07_CONTEXTUAL_AI_PROMPT_TO_VIEW_AND_REAL_VOICE_TO_FORM.md",
+      "sha256": "643c79623983dbc39c745c564ba0b3b338da658163dd9e9141d81986d60b913d"
+    },
+    {
+      "path": "phases/08_FILE_TRANSPORT_DATACART_AND_IMPORT_RECOVERY.md",
+      "sha256": "fdaa97376768fd84480cef57d47f04f985cd478f56a6c38cce14872ba949540e"
+    },
+    {
+      "path": "phases/09_INTAKE_PLAN_DAG_AND_HUMAN_APPROVAL.md",
+      "sha256": "3291652b973238acacb9643e5fda6983faa7aba29c4f8fa1dfdfc81328b0899a"
+    },
+    {
+      "path": "phases/10_AGENT_READINESS_RUNS_AND_INDEPENDENT_REVIEWS.md",
+      "sha256": "6af0e4639019a216bf5667f6309eacf727cf91fd11d7547f04445d56877d72e6"
+    },
+    {
+      "path": "phases/11_GALLERY_KNOWLEDGE_CITATIONS_AND_SOURCE_LINEAGE.md",
+      "sha256": "b5cac76f4970122dbac69e250e6b1b2bc9b4e219588a9640039680af8087a0a6"
+    },
+    {
+      "path": "phases/12_OVERVIEW_EVIDENCE_BASED_REPORTS_AND_RELEASES.md",
+      "sha256": "e80dc09f404c4362e2b1422dae0cd6adb94ed533319c8f461ad45f2931e4cc34"
+    },
+    {
+      "path": "phases/13_PEOPLE_ORGANIZATION_ADMINISTRATION_AND_VERSIONED_SETTINGS.md",
+      "sha256": "9ff7e5bbbed791de5027b0d649e481cdc3cf5bff74cc825bce6e81789bf15e4d"
+    },
+    {
+      "path": "phases/14_CROSS_PROJECT_MY_WORK_INBOX_SEARCH_AND_ACTIVITY.md",
+      "sha256": "85a171e4a2febfc3a2d580cd9c822c66220dfbea741439713b237f91312d9352"
+    },
+    {
+      "path": "phases/15_LIVE_RECONCILIATION_HARDENING_AND_FINAL_UI_ACCEPTANCE.md",
+      "sha256": "c41f81103a31627144d4316943a8f39b97de529a64c234a3f62b11beb113d73a"
+    },
+    {
+      "path": "reference/EmpireProject_UI_Engine_API_Contract_FA_v1.0.md",
+      "sha256": "2a5e77a1d7cf06007d3ed4072fed637c4d8bb612d3b3b43dec88eb5cd773f951"
+    },
+    {
+      "path": "templates/ADR_TEMPLATE.md",
+      "sha256": "72410da87fb69902ba378836c9055e8956a9179f70a3d187e2ee616c901ebd80"
+    },
+    {
+      "path": "templates/PHASE_REPORT_TEMPLATE.md",
+      "sha256": "1156dc214db2e09fde2ea44d6d58d50ac438bd8f1ac4fc52fe41ca6694d0d69e"
+    },
+    {
+      "path": "templates/UAT_TEMPLATE.md",
+      "sha256": "380b926b3909be63b9cc98b13aeb804ec40cc349bc2685c953ed52edb55b1d37"
+    }
+  ]
+}

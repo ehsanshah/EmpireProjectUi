@@ -1,0 +1,495 @@
+{
+  "pack_version": "1.0",
+  "created_on": "2026-10-27",
+  "current_phase": "15",
+  "app_repository_inspected": true,
+  "app_commands": {
+    "install": "npm ci",
+    "dev": "npm run dev -- --port 5176",
+    "typecheck": "npm run typecheck",
+    "unit": "npm test",
+    "build": "npm run build",
+    "browser": "npm run test:e2e"
+  },
+  "application_stack": "React 19 + TypeScript 5.7 + Vite 6; npm/package-lock.json; Vitest + Playwright (Chrome)",
+  "source_contract": "reference/EmpireProject_UI_Engine_API_Contract_FA_v1.0.md",
+  "execution_note": "Phase 14 UI and UX explicitly approved for tested local Demo. Phase 15 final audit, hardening and UI-only handoff are implemented for local review. Demo behavior is tested; actual Engine contracts, staging authorization, storage, speech, Agent execution and delivery remain blocked or unverified. Final Phase 15 UI and UX acceptance is pending.",
+  "phases": [
+    {
+      "id": "00",
+      "prompt_file": "phases/00_REPOSITORY_AUDIT.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "UNVERIFIED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/BASELINE_REPORT.md",
+      "blockers": [
+        "Actual OpenAPI and event schemas unavailable (Backend)",
+        "Non-production staging URL/network unavailable (DevOps)",
+        "Auth/session/CSRF and test identities unavailable (IAM/Backend)",
+        "Current 14/8/2 fixture differs from older 12/6/2 Stage 1 acceptance (Product/QA)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I approve the Phase 00 UI and UX baseline review as sufficient to proceed. This does not mean all existing screens are final."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I approve the Phase 00 UI and UX baseline review as sufficient to proceed. This does not mean all existing screens are final."
+      }
+    },
+    {
+      "id": "01",
+      "prompt_file": "phases/01_CONSOLIDATE_DESIGN_SYSTEM_SHELL_AND_PROJECT_SWITCHING.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "UNVERIFIED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE01_REPORT.md",
+      "blockers": [
+        "Actual OpenAPI/event schemas and backend operation IDs unavailable (Backend)",
+        "Staging URL/network and auth/session/CSRF test inputs unavailable (DevOps/IAM/Backend)",
+        "AI continuation and identity lookup are Demo-only in Phase 01 (AI/Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 01."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 01."
+      }
+    },
+    {
+      "id": "02",
+      "prompt_file": "phases/02_TYPED_API_SEAM_AND_CORE_VERTICAL_SLICE.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE02_REPORT.md",
+      "blockers": [
+        "Actual Engine OpenAPI and event schema unavailable (Backend)",
+        "Same-origin BFF session, CSRF and test identities unavailable (IAM/Backend)",
+        "Non-production staging URL and reachability unavailable (DevOps)",
+        "Server operation IDs, ETag/receipt/idempotency/SSE wire examples unavailable (Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 02."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 02."
+      }
+    },
+    {
+      "id": "03",
+      "prompt_file": "phases/03_COMPLETE_WORKITEM_LIST_FORMS_AND_SCOPED_SEARCH.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE03_REPORT.md",
+      "blockers": [
+        "Actual Engine OpenAPI/event schema and route/response examples unavailable (Backend)",
+        "BFF session/CSRF and least-privilege identities unavailable (IAM/Backend)",
+        "Non-production staging URL and reachability unavailable (DevOps)",
+        "Selection-token, cursor, bulk and sensitive-action wire contracts unverified (Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 03."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 03."
+      }
+    },
+    {
+      "id": "04",
+      "prompt_file": "phases/04_BOARD_KANBAN_BEHAVIOR_AND_DEPENDENCY_WORK_FLOW.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE04_REPORT.md",
+      "blockers": [
+        "Actual Engine OpenAPI/event schemas and Board move/rank/required-field wire contracts unavailable (Backend)",
+        "BFF session/CSRF, permission scopes and hidden dependency policy unavailable (IAM/Backend)",
+        "Non-production staging URL and reachability unavailable (DevOps)",
+        "Status-entry timestamps/aging contract absent; authentic in-column age cannot be shown (Backend/Product)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 04."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 04."
+      }
+    },
+    {
+      "id": "05",
+      "prompt_file": "phases/05_CALENDAR_SCHEDULING_ADAPTER_AND_TIMELINE.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE05_REPORT.md",
+      "blockers": [
+        "Actual ScheduleBlock schema/routes and working-calendar/DST/resource policy unavailable (Backend/Product)",
+        "BFF session/CSRF and least-privilege identities unavailable (IAM/Backend)",
+        "Non-production staging URL/reachability unavailable (DevOps)",
+        "Actual Engine workset metadata and authorized dependency projection unverified (Backend/IAM)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 05."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 05."
+      }
+    },
+    {
+      "id": "06",
+      "prompt_file": "phases/06_BACKLOG_SPRINT_AND_CAPACITY_PLANNING.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE06_REPORT.md",
+      "blockers": [
+        "Actual Engine Sprint/rank/fit schemas, operation IDs and receipt envelopes unavailable (Backend/Product)",
+        "BFF session/CSRF and least-privilege Scrum Master/Lead identities unavailable (IAM/Backend)",
+        "Non-production staging URL/reachability unavailable (DevOps)",
+        "Goal/DoD evidence and working-calendar/capacity policy unverified (Product/Backend)",
+        "Async Sprint operation reconciliation contract unavailable (Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 06, including the latest planning-tab fixes."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 06, including the latest planning-tab fixes."
+      }
+    },
+    {
+      "id": "07",
+      "prompt_file": "phases/07_CONTEXTUAL_AI_PROMPT_TO_VIEW_AND_REAL_VOICE_TO_FORM.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE07_REPORT.md",
+      "blockers": [
+        "Actual AI interaction/answer/query-run and proposal approval/commit schemas unavailable (Backend/AI)",
+        "Speech provider/upload/retention contract and real microphone evidence unavailable (Speech/Backend/Privacy)",
+        "BFF session/CSRF, permissions and least-privilege identities unavailable (IAM/Backend)",
+        "Non-production staging URL/reachability unavailable (DevOps)",
+        "Ready-file and external mention authorization contract unavailable (Backend/IAM)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve the UI and UX of the tested Phase 07 Demo flows. Real microphone transcription and Live Engine integration remain unverified; do not mark them accepted or complete."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve the UI and UX of the tested Phase 07 Demo flows. Real microphone transcription and Live Engine integration remain unverified; do not mark them accepted or complete."
+      }
+    },
+    {
+      "id": "08",
+      "prompt_file": "phases/08_FILE_TRANSPORT_DATACART_AND_IMPORT_RECOVERY.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted_demo_scope",
+      "report": "evidence/PHASE08_REPORT.md",
+      "blockers": [
+        "Actual storage upload ticket/host/header/scan/checksum service unavailable (Storage/Backend/Security)",
+        "Engine DataCart row/draft-graph/approval/commit/receipt schemas and operation IDs unavailable (Backend/Product)",
+        "Fresh scoped artifact download and revoke policy unavailable (Backend/IAM/Security)",
+        "XLSX/PDF/text task parsers and authorized Google Sheets connection capability unavailable (Product/Integrations)",
+        "BFF session/CSRF identities and non-production staging URL unavailable (IAM/DevOps/Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve the UI and UX of the tested Phase 08 local CSV Demo flows. Real storage, malware scanning, server import, Google Sheets, Live Engine integration and real microphone transcription remain blocked or unverified. Preserve those statuses."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve the UI and UX of the tested Phase 08 local CSV Demo flows. Real storage, malware scanning, server import, Google Sheets, Live Engine integration and real microphone transcription remain blocked or unverified. Preserve those statuses."
+      }
+    },
+    {
+      "id": "09",
+      "prompt_file": "phases/09_INTAKE_PLAN_DAG_AND_HUMAN_APPROVAL.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted_tested_local_demo",
+      "report": "evidence/PHASE09_REPORT.md",
+      "blockers": [
+        "Actual Intake/ExecutionPlan/approval/execution OpenAPI, ETag and receipt schemas unavailable (Backend)",
+        "Agent membership and execution capability policy unavailable; no real agent dispatch (Backend/IAM/Agent platform)",
+        "Ready-file source binding and verified speech transcript references unavailable (Storage/Speech/Backend)",
+        "BFF session/CSRF test identities and staging URL unavailable (IAM/DevOps/Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 09 local Demo flows. Preserve all existing Live blockers and unverified capabilities; this approval does not verify actual agent execution."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 09 local Demo flows. Preserve all existing Live blockers and unverified capabilities; this approval does not verify actual agent execution."
+      }
+    },
+    {
+      "id": "10",
+      "prompt_file": "phases/10_AGENT_READINESS_RUNS_AND_INDEPENDENT_REVIEWS.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted_tested_local_demo",
+      "report": "evidence/PHASE10_REPORT.md",
+      "blockers": [
+        "No reconciled Agent membership/probe/assignment/Run/Review OpenAPI or server event/operation/receipt examples (Backend/Agent platform)",
+        "No actual Agent API/MCP connector, credential grant, independent review policy or authorized test identities (Agent platform/IAM)",
+        "No staging URL and no Live BFF session/CSRF/network access (DevOps/Backend/IAM)",
+        "No real artifact storage/test evidence/access-ticket contract (Storage/Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 10 local Demo flows. This does not verify real Agent execution, API/MCP probes, authorization enforcement or Live integration. Preserve all documented blockers."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 10 local Demo flows. This does not verify real Agent execution, API/MCP probes, authorization enforcement or Live integration. Preserve all documented blockers."
+      }
+    },
+    {
+      "id": "11",
+      "prompt_file": "phases/11_GALLERY_KNOWLEDGE_CITATIONS_AND_SOURCE_LINEAGE.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted_tested_local_demo",
+      "report": "evidence/PHASE11_REPORT.md",
+      "blockers": [
+        "No reconciled Gallery/artifact/Knowledge/resolve OpenAPI, status, event or receipt schemas (Backend/Knowledge service)",
+        "No real artifact storage, hash, preview/deployment metadata, access-ticket or signed URL revoke policy (Storage/Security/DevOps/Product)",
+        "No source indexing, freshness, citation locator, permitted connector or scoped count contract (Knowledge service/Backend/Product)",
+        "No BFF session/CSRF, authorized and revoked test principals, or reachable staging (IAM/DevOps/Backend)",
+        "Memory Galaxy and Obsidian integration contracts and services unavailable (Product/Integrations)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve the UI and UX of the tested Phase 11 Demo, including the Persian and Arabic interface changes. This approval does not verify Live storage, authorization, indexing, artifact access, deployment or unavailable integrations. Preserve all documented blockers."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve the UI and UX of the tested Phase 11 Demo, including the Persian and Arabic interface changes. This approval does not verify Live storage, authorization, indexing, artifact access, deployment or unavailable integrations. Preserve all documented blockers."
+      }
+    },
+    {
+      "id": "12",
+      "prompt_file": "phases/12_OVERVIEW_EVIDENCE_BASED_REPORTS_AND_RELEASES.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE12_REPORT.md",
+      "blockers": [
+        "No reconciled report/export/release OpenAPI, events, operation IDs or receipt examples (Backend/Reporting/Release service)",
+        "No BFF session/CSRF, current ACL, access-ticket/download policy or reachable staging (IAM/Security/Backend/DevOps)",
+        "No authoritative release gate/environment policy, real delivery evidence or shipped receipt semantics (Product/Release service)",
+        "No complete event history, known estimates/cost or authorized organization aggregation (Analytics/Organization service/Product)",
+        "All prior Phase 07–11 speech, storage, scan/import, indexing, Agent, review and artifact-access Live blockers remain open"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 12 Demo flows. Live authorization, storage, delivery and historical metrics without event history remain unverified or unavailable."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 12 Demo flows. Live authorization, storage, delivery and historical metrics without event history remain unverified or unavailable."
+      }
+    },
+    {
+      "id": "13",
+      "prompt_file": "phases/13_PEOPLE_ORGANIZATION_ADMINISTRATION_AND_VERSIONED_SETTINGS.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE13_REPORT.md",
+      "blockers": [
+        "No reconciled membership/role/grant/workflow/connection OpenAPI or staging identities (Backend/IAM/DevOps)",
+        "No current BFF session/CSRF, ACL and scoped permission-change stream contract (IAM/Security/Backend)",
+        "No workflow migration/active Run approval or API/MCP probe contract (Backend/Agent platform/Integrations)",
+        "SSO/SCIM, retention, residency, quotas and billing capabilities unavailable (Organization service/Product)",
+        "All prior Live blockers and unverified capabilities remain open"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 13, including the configurable Board correction, for the tested local Demo. Live schema publication and server authorization remain unverified."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of Phase 13, including the configurable Board correction, for the tested local Demo. Live schema publication and server authorization remain unverified."
+      }
+    },
+    {
+      "id": "14",
+      "prompt_file": "phases/14_CROSS_PROJECT_MY_WORK_INBOX_SEARCH_AND_ACTIVITY.md",
+      "implementation_status": "accepted",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "explicitly_accepted",
+      "report": "evidence/PHASE14_REPORT.md",
+      "blockers": [
+        "No reconciled organization directory/My Work/Inbox/search/activity OpenAPI, operation IDs, event schema or staging endpoint (Backend/Organization service)",
+        "No real BFF session expiry/logout/org-switch protocol, authorized cross-project grants, scoped search index or server-side redaction evidence (IAM/Security/Backend)",
+        "No organization event stream or polling cadence/revision/notification policy contract (Backend/Notifications)",
+        "No external Email/Slack/WhatsApp connector or delivery receipt; all prior Live blockers remain open (Integrations/Backend)"
+      ],
+      "ui_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 14 local Demo flows. Preserve all documented Live blockers."
+      },
+      "ux_review": {
+        "status": "approved",
+        "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 14 local Demo flows. Preserve all documented Live blockers."
+      }
+    },
+    {
+      "id": "15",
+      "prompt_file": "phases/15_LIVE_RECONCILIATION_HARDENING_AND_FINAL_UI_ACCEPTANCE.md",
+      "implementation_status": "awaiting_ui_ux_review",
+      "demo_status": "PASS",
+      "live_status": "BLOCKED",
+      "user_acceptance": "pending",
+      "report": "evidence/PHASE15_REPORT.md",
+      "blockers": [
+        "Actual Engine OpenAPI, event schemas, operation IDs and staging URL unavailable (Backend/DevOps)",
+        "BFF session, CSRF, least-privilege identities and real authorization evidence unavailable (IAM/Security/Backend)",
+        "Storage/scan/import, AI/voice, Agent execution, reporting history and release delivery Live contracts remain unresolved (service owners)",
+        "Manual screen-reader and production-like performance/tenant-skew verification remain unverified (QA/Product)"
+      ],
+      "ui_review": {
+        "status": "pending",
+        "user_evidence": null
+      },
+      "ux_review": {
+        "status": "pending",
+        "user_evidence": null
+      }
+    }
+  ],
+  "approval_history": [
+    {
+      "phase": "00",
+      "decision": "ui_and_ux_approved",
+      "user_message": "I approve the Phase 00 UI and UX baseline review as sufficient to proceed. This does not mean all existing screens are final.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "01",
+      "decision": "ui_and_ux_approved",
+      "user_message": "I explicitly approve both the UI and UX of Phase 01.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "02",
+      "decision": "ui_and_ux_approved",
+      "user_message": "I explicitly approve both the UI and UX of Phase 02.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "03",
+      "decision": "ui_and_ux_approved",
+      "user_message": "I explicitly approve both the UI and UX of Phase 03.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "04",
+      "decision": "ui_and_ux_approved",
+      "user_message": "I explicitly approve both the UI and UX of Phase 04.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "05",
+      "decision": "ui_and_ux_approved",
+      "user_message": "I explicitly approve both the UI and UX of Phase 05.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "06",
+      "decision": "ui_and_ux_approved",
+      "user_message": "I explicitly approve both the UI and UX of Phase 06, including the latest planning-tab fixes.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "07",
+      "decision": "ui_and_ux_approved_for_tested_demo_flows",
+      "user_message": "I explicitly approve the UI and UX of the tested Phase 07 Demo flows. Real microphone transcription and Live Engine integration remain unverified; do not mark them accepted or complete.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "08",
+      "decision": "ui_and_ux_approved_for_tested_local_csv_demo",
+      "user_message": "I explicitly approve the UI and UX of the tested Phase 08 local CSV Demo flows. Real storage, malware scanning, server import, Google Sheets, Live Engine integration and real microphone transcription remain blocked or unverified. Preserve those statuses.",
+      "recorded_on": "2026-10-27"
+    },
+    {
+      "phase": "09",
+      "decision": "ui_and_ux_approved_for_tested_local_demo",
+      "user_message": "I explicitly approve both the UI and UX of the tested Phase 09 local Demo flows. Preserve all existing Live blockers and unverified capabilities; this approval does not verify actual agent execution.",
+      "recorded_on": "2026-10-28"
+    },
+    {
+      "phase": "10",
+      "decision": "ui_and_ux_approved_for_tested_local_demo",
+      "user_message": "I explicitly approve both the UI and UX of the tested Phase 10 local Demo flows. This does not verify real Agent execution, API/MCP probes, authorization enforcement or Live integration. Preserve all documented blockers.",
+      "recorded_on": "2026-10-28"
+    },
+    {
+      "phase": "11",
+      "decision": "ui_and_ux_approved_for_tested_local_demo",
+      "user_message": "I explicitly approve the UI and UX of the tested Phase 11 Demo, including the Persian and Arabic interface changes. This approval does not verify Live storage, authorization, indexing, artifact access, deployment or unavailable integrations. Preserve all documented blockers.",
+      "recorded_on": "2026-10-28"
+    },
+    {
+      "phase": "12",
+      "decision": "ui_and_ux_approved_for_tested_local_demo",
+      "user_message": "I explicitly approve both the UI and UX of the tested Phase 12 Demo flows. Live authorization, storage, delivery and historical metrics without event history remain unverified or unavailable.",
+      "recorded_on": "2026-10-28"
+    },
+    {
+      "phase": "13",
+      "decision": "ui_and_ux_approved_for_tested_local_demo",
+      "user_message": "I explicitly approve both the UI and UX of Phase 13, including the configurable Board correction, for the tested local Demo. Live schema publication and server authorization remain unverified.",
+      "recorded_on": "2026-10-28"
+    },
+    {
+      "phase": "14",
+      "decision": "ui_and_ux_approved_for_tested_local_demo",
+      "user_message": "I explicitly approve both the UI and UX of the tested Phase 14 local Demo flows. Preserve all documented Live blockers.",
+      "recorded_on": "2026-10-28"
+    }
+  ],
+  "unresolved_contract_decisions": [
+    "CD-01",
+    "CD-02",
+    "CD-03",
+    "CD-04",
+    "CD-05",
+    "CD-06",
+    "CD-07",
+    "CD-08"
+  ],
+  "review_gate": "Explicit user approval of both UI and UX after every phase"
+}

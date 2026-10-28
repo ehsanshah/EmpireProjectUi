@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 test('mouse row reorder persists, Undo restores, and priority labels stay unchanged',async({page})=>{
- await page.goto('/');await expect(page.locator('html')).toHaveAttribute('data-design','glass');
+ await page.goto('/?design=glass');await expect(page.locator('html')).toHaveAttribute('data-design','glass');
  await expect(page.locator('.reorder-hint')).toHaveCount(0);
  await expect(page.locator('.drag-handle')).toHaveCount(14);
  await expect(page.getByLabel('EMP-103 assignee')).toHaveValue('agent-hermes');
@@ -22,7 +22,7 @@ test('mouse row reorder persists, Undo restores, and priority labels stay unchan
  await expect.poll(async()=>(await keys())[0]).toBe('EMP-103');
 });
 
-test('visible drag handles remain in the previous design too',async({page})=>{
+test('visible drag handles remain in Classic too',async({page})=>{
  await page.goto('/?design=current');
  await expect(page.locator('.drag-handle')).toHaveCount(14);
  await expect(page.locator('.reorder-hint')).toHaveCount(0);

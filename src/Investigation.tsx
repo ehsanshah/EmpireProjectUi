@@ -1,14 +1,15 @@
+import {uiText} from './i18n';
 import { ArrowUpRight, GitBranch, LockKeyhole, CalendarClock, Check, FilePenLine } from 'lucide-react';
 import { users, type Issue, dateLabel } from './domain';
 import { issueTitle, labels, statuses } from './Views';
-export type Locale = 'fa'|'en';
-export const description=(i:Issue,l:Locale)=>l==='en'?i.descriptionEn:i.description;
-export const criteria=(i:Issue,l:Locale)=>l==='en'?i.acceptanceCriteriaEn:i.acceptanceCriteria;
-export const blocker=(i:Issue,l:Locale)=>l==='en'?i.blockerReasonEn:i.blockerReason;
-export const owner=(i:Issue,l:Locale)=>users.find(u=>u.id===i.assigneeId)?.[l==='en'?'nameEn':'name']??(l==='en'?'Unassigned':'بدون مسئول');
+export type Locale = 'fa'|'en'|'ar';
+export const description=(i:Issue,l:Locale)=>l==='fa'?i.description:i.descriptionEn;
+export const criteria=(i:Issue,l:Locale)=>l==='fa'?i.acceptanceCriteria:i.acceptanceCriteriaEn;
+export const blocker=(i:Issue,l:Locale)=>l==='fa'?i.blockerReason:i.blockerReasonEn;
+export const owner=(i:Issue,l:Locale)=>users.find(u=>u.id===i.assigneeId)?.[l==='fa'?'name':'nameEn']??uiText(l,'Unassigned','بدون مسئول');
 interface Props {rows:Issue[];issues:Issue[];locale:Locale;calendar:string;inspect:(i:Issue)=>void;draft:(i:Issue)=>void}
 export function RiskInvestigation({rows,issues,locale:l,calendar,inspect,draft}:Props){
- const t=(en:string,fa:string)=>l==='en'?en:fa;
+ const t=(en:string,fa:string,ar?:string)=>uiText(l,en,fa,ar);
  const blocked=rows.filter(i=>i.blocked);
  const edges=blocked.flatMap(i=>i.dependencies.map(id=>({from:i,to:issues.find(x=>x.id===id)}))).filter(e=>e.to);
  const missing=blocked.filter(i=>!i.startDate||!i.dueDate);

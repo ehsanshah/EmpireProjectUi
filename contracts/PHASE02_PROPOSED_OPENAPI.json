@@ -1,0 +1,294 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "EmpireProject Phase 02 proposed boundary",
+    "version": "0.0.0-proposed",
+    "description": "Client-side proposal derived from reference/EmpireProject_UI_Engine_API_Contract_FA_v1.0.md. Not server verified; operation IDs, paths, response schemas and topology require reconciliation."
+  },
+  "x-contract-status": "proposed_unverified",
+  "servers": [
+    {
+      "url": "/",
+      "description": "Proposed same-origin BFF; actual topology unverified"
+    }
+  ],
+  "paths": {
+    "/api/session": {
+      "get": {
+        "operationId": "proposedGetSession",
+        "responses": {
+          "200": {
+            "description": "Session, CSRF and scoped identity"
+          }
+        }
+      }
+    },
+    "/api/ep/v1/orgs/{orgId}/capabilities": {
+      "get": {
+        "operationId": "proposedGetCapabilities",
+        "responses": {
+          "200": {
+            "description": "Capabilities and schema revision"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/projects": {
+      "get": {
+        "operationId": "proposedListProjects",
+        "responses": {
+          "200": {
+            "description": "Accessible projects only"
+          }
+        }
+      },
+      "post": {
+        "operationId": "proposedCreateProject",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/CsrfToken"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Project with human Owner and receipt"
+          },
+          "409": {
+            "description": "Idempotency conflict"
+          },
+          "422": {
+            "description": "Validation Problem Details"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/projects/{projectId}/work-items": {
+      "get": {
+        "operationId": "proposedListWorkItems",
+        "responses": {
+          "200": {
+            "description": "Scoped read envelope with count relation, snapshot and watermark"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        },
+        {
+          "$ref": "#/components/parameters/projectId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/projects/{projectId}/work-items/{issueId}": {
+      "get": {
+        "operationId": "proposedGetWorkItem",
+        "responses": {
+          "200": {
+            "description": "WorkItem and opaque strong ETag"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        },
+        {
+          "$ref": "#/components/parameters/projectId"
+        },
+        {
+          "$ref": "#/components/parameters/issueId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/projects/{projectId}/work-items/{issueId}/transitions": {
+      "post": {
+        "operationId": "proposedTransitionWorkItem",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IfMatch"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/CsrfToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Applied command receipt"
+          },
+          "202": {
+            "description": "Accepted operation reference"
+          },
+          "409": {
+            "description": "Policy or idempotency conflict"
+          },
+          "412": {
+            "description": "Version conflict; retain user draft"
+          },
+          "422": {
+            "description": "Validation Problem Details"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        },
+        {
+          "$ref": "#/components/parameters/projectId"
+        },
+        {
+          "$ref": "#/components/parameters/issueId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/projects/{projectId}/work-items/{issueId}/activity": {
+      "get": {
+        "operationId": "proposedGetWorkItemActivity",
+        "responses": {
+          "200": {
+            "description": "Scoped activity entries with receipt reference"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        },
+        {
+          "$ref": "#/components/parameters/projectId"
+        },
+        {
+          "$ref": "#/components/parameters/issueId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/projects/{projectId}/events": {
+      "get": {
+        "operationId": "proposedSubscribeProjectEvents",
+        "responses": {
+          "200": {
+            "description": "Scoped SSE metadata; invalidation only"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        },
+        {
+          "$ref": "#/components/parameters/projectId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/operations/{operationId}": {
+      "get": {
+        "operationId": "proposedGetOperation",
+        "responses": {
+          "200": {
+            "description": "Queued, running, succeeded or failed"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        },
+        {
+          "$ref": "#/components/parameters/operationId"
+        }
+      ]
+    },
+    "/api/ep/v1/orgs/{orgId}/commands/by-key": {
+      "get": {
+        "operationId": "proposedGetCommandByKey",
+        "responses": {
+          "200": {
+            "description": "Scoped receipt or unknown outcome"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/orgId"
+        }
+      ]
+    }
+  },
+  "components": {
+    "parameters": {
+      "IfMatch": {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "CsrfToken": {
+        "name": "X-CSRF-Token",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "orgId": {
+        "name": "orgId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "projectId": {
+        "name": "projectId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "issueId": {
+        "name": "issueId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "operationId": {
+        "name": "operationId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

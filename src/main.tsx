@@ -1,6 +1,9 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import App from './App';
+import {coreMode} from './core/httpClient';
 import './styles.css';
 import './glass-preview.css';
-createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
+import './clarification.css';
+import './colorSystem.css';
+createRoot(document.getElementById('root')!).render(<React.StrictMode>{coreMode()==='live'?<main className="live-unavailable" role="alert"><h1>Live integration unavailable</h1><p>The Engine contract, session topology and staging endpoints have not been verified. No Demo data is shown in Live mode.</p><p>Use the local Demo build for the current review.</p></main>:<App/>}</React.StrictMode>);

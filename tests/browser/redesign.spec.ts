@@ -9,6 +9,7 @@ test('desktop design review: workspace and risk investigation',async({page})=>{
  expect(toolbar?.height).toBeLessThanOrEqual(52);
  expect(Math.abs((toolbar!.y+toolbar!.height)-table!.y)).toBeLessThanOrEqual(2);
  await page.screenshot({path:'docs/screenshots/redesign/01-workspace.png'});
+ await page.getByRole('button',{name:'Toggle demo agent'}).click();
  await page.getByRole('button',{name:'Why is delivery at risk?'}).click();
  await expect(page.getByTestId('risk-investigation')).toBeVisible();
  await expect(page.locator('[data-issue]')).toHaveCount(2);

@@ -1,0 +1,516 @@
+{
+  "schemaVersion": 2,
+  "synthetic": true,
+  "initialLocale": "en",
+  "initialCalendar": "gregory",
+  "initialTheme": "dark",
+  "clock": "2026-10-22T09:00:00Z",
+  "project": {
+    "id": "empire",
+    "name": "EmpireProject",
+    "title": "بازطراحی پرداخت فروشگاه",
+    "titleEn": "Store checkout redesign"
+  },
+  "sprint": {
+    "id": "sprint-12",
+    "name": "Sprint 12",
+    "startDate": "2026-10-19",
+    "endDate": "2026-10-30",
+    "goal": "مشتری خرید را با پرداخت موفق و رسید معتبر تمام کند.",
+    "goalEn": "Customers complete their purchase with a successful payment and a valid receipt."
+  },
+  "users": [
+    {
+      "id": "u-sara",
+      "name": "سارا",
+      "nameEn": "Sara"
+    },
+    {
+      "id": "u-ali",
+      "name": "علی",
+      "nameEn": "Ali"
+    },
+    {
+      "id": "u-reza",
+      "name": "رضا",
+      "nameEn": "Reza"
+    },
+    {
+      "id": "u-mina",
+      "name": "مینا",
+      "nameEn": "Mina"
+    },
+    {
+      "id": "agent-hermes",
+      "name": "هرمس",
+      "nameEn": "Hermes",
+      "kind": "agent"
+    }
+  ],
+  "issues": [
+    {
+      "id": "demo-issue-101",
+      "semanticKey": "EMP-101",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "اتصال صفحه پرداخت به درگاه",
+      "description": "در مسیر خرید فروشگاه، اتصال صفحه پرداخت به درگاه برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "in_progress",
+      "assigneeId": "u-sara",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-19",
+      "dueDate": "2026-10-24",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Connect checkout to gateway",
+      "acceptanceCriteria": [
+        "کاربر از خلاصه سفارش به درگاه منتقل شود و نتیجه بازگشت ثبت شود."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Connect checkout to gateway” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "The customer can move from the order summary to the gateway, and the return result is recorded."
+      ],
+      "blockerReasonEn": null,
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-102",
+      "semanticKey": "EMP-102",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "نمایش خطای پرداخت ناموفق",
+      "description": "در مسیر خرید فروشگاه، نمایش خطای پرداخت ناموفق برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "todo",
+      "assigneeId": "u-ali",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-20",
+      "dueDate": "2026-10-25",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Show failed payment errors",
+      "acceptanceCriteria": [
+        "خطای قابل فهم همراه امکان تلاش مجدد نمایش داده شود."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Show failed payment errors” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "A clear failure message and a retry option are displayed."
+      ],
+      "blockerReasonEn": null,
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-103",
+      "semanticKey": "EMP-103",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "جلوگیری از پرداخت تکراری",
+      "description": "در مسیر خرید فروشگاه، جلوگیری از پرداخت تکراری برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "in_progress",
+      "assigneeId": "agent-hermes",
+      "blocked": true,
+      "blockerReason": "منتظر تأیید قرارداد وب‌هوک در EMP-104",
+      "startDate": "2026-10-21",
+      "dueDate": "2026-10-26",
+      "priority": "high",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Prevent duplicate payments",
+      "acceptanceCriteria": [
+        "درخواست تکراری با یک کلید یکسان فقط یک تراکنش ایجاد کند."
+      ],
+      "dependencies": [
+        "demo-issue-104"
+      ],
+      "descriptionEn": "Implement “Prevent duplicate payments” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "Repeated requests with the same idempotency key create only one transaction."
+      ],
+      "blockerReasonEn": "Waiting for approval of the webhook contract in EMP-104",
+      "agentId": "agent-hermes",
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-104",
+      "semanticKey": "EMP-104",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "تأیید قرارداد وب‌هوک درگاه",
+      "description": "در مسیر خرید فروشگاه، تأیید قرارداد وب‌هوک درگاه برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "todo",
+      "assigneeId": "u-reza",
+      "blocked": true,
+      "blockerReason": "منتظر تأیید ساختار امضا و رویداد از تیم درگاه",
+      "startDate": null,
+      "dueDate": null,
+      "priority": "high",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Approve gateway webhook contract",
+      "acceptanceCriteria": [
+        "ساختار رویداد، امضا و سیاست تلاش مجدد تأیید و مستند شود."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Approve gateway webhook contract” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "The event payload, signature and retry policy are approved and documented."
+      ],
+      "blockerReasonEn": "Waiting for the gateway team to approve the signature and event structure",
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-105",
+      "semanticKey": "EMP-105",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "ارسال رسید پس از پرداخت",
+      "description": "در مسیر خرید فروشگاه، ارسال رسید پس از پرداخت برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "review",
+      "assigneeId": "u-mina",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-23",
+      "dueDate": "2026-10-28",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Send payment receipt",
+      "acceptanceCriteria": [
+        "رسید شامل مبلغ و شناسه تراکنش پس از پرداخت موفق آماده شود."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Send payment receipt” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "A receipt with the amount and transaction reference is prepared after a successful payment."
+      ],
+      "blockerReasonEn": null,
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-106",
+      "semanticKey": "EMP-106",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "آزمون پرداخت در موبایل",
+      "description": "در مسیر خرید فروشگاه، آزمون پرداخت در موبایل برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "todo",
+      "assigneeId": "u-ali",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-19",
+      "dueDate": "2026-10-29",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Test mobile checkout",
+      "acceptanceCriteria": [
+        "مسیر پرداخت در عرض ۳۹۰ پیکسل بدون قطع متن قابل تکمیل باشد."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Test mobile checkout” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "Checkout can be completed at a 390px viewport without clipped text."
+      ],
+      "blockerReasonEn": null,
+      "area": "mobile"
+    },
+    {
+      "id": "demo-issue-107",
+      "semanticKey": "EMP-107",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "طراحی خلاصه سفارش",
+      "description": "در مسیر خرید فروشگاه، طراحی خلاصه سفارش برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "completed",
+      "assigneeId": "u-mina",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-20",
+      "dueDate": "2026-10-30",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Design order summary",
+      "acceptanceCriteria": [
+        "مبلغ نهایی و اقلام سفارش پیش از پرداخت قابل مرور باشند."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Design order summary” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "Order items and the final amount can be reviewed before payment."
+      ],
+      "blockerReasonEn": null,
+      "area": "mobile"
+    },
+    {
+      "id": "demo-issue-108",
+      "semanticKey": "EMP-108",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "اعتبارسنجی مبلغ سفارش",
+      "description": "در مسیر خرید فروشگاه، اعتبارسنجی مبلغ سفارش برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "completed",
+      "assigneeId": "u-sara",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-21",
+      "dueDate": "2026-10-24",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Validate order amount",
+      "acceptanceCriteria": [
+        "مبلغ نامعتبر رد و مبلغ سفارش با مجموع اقلام تطبیق داده شود."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Validate order amount” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "Invalid amounts are rejected and the order total matches its line items."
+      ],
+      "blockerReasonEn": null,
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-109",
+      "semanticKey": "EMP-109",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "ثبت شناسه تراکنش",
+      "description": "در مسیر خرید فروشگاه، ثبت شناسه تراکنش برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "completed",
+      "assigneeId": "u-reza",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-22",
+      "dueDate": "2026-10-25",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Store transaction reference",
+      "acceptanceCriteria": [
+        "شناسه درگاه به سفارش درست متصل و قابل پیگیری باشد."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Store transaction reference” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "The gateway reference is linked to the correct order and can be traced."
+      ],
+      "blockerReasonEn": null,
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-110",
+      "semanticKey": "EMP-110",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "نمایش وضعیت پرداخت",
+      "description": "در مسیر خرید فروشگاه، نمایش وضعیت پرداخت برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "completed",
+      "assigneeId": "u-ali",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-23",
+      "dueDate": "2026-10-26",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Display payment status",
+      "acceptanceCriteria": [
+        "نتیجه موفق، ناموفق و در انتظار با متن روشن نمایش داده شود."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Display payment status” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "Successful, failed and pending results are clearly distinguished."
+      ],
+      "blockerReasonEn": null,
+      "area": "mobile"
+    },
+    {
+      "id": "demo-issue-111",
+      "semanticKey": "EMP-111",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "ثبت رخدادهای خطای درگاه",
+      "description": "در مسیر خرید فروشگاه، ثبت رخدادهای خطای درگاه برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "completed",
+      "assigneeId": "u-reza",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-19",
+      "dueDate": "2026-10-27",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Log gateway errors",
+      "acceptanceCriteria": [
+        "خطای درگاه با شناسه پیگیری و بدون اطلاعات حساس ثبت شود."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Log gateway errors” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "Gateway errors include a tracking reference and exclude sensitive information."
+      ],
+      "blockerReasonEn": null,
+      "area": "web"
+    },
+    {
+      "id": "demo-issue-112",
+      "semanticKey": "EMP-112",
+      "tenantId": "demo-tenant",
+      "projectId": "empire",
+      "sprintId": "sprint-12",
+      "version": 1,
+      "title": "نگهداری مسیر پرداخت قدیمی",
+      "description": "در مسیر خرید فروشگاه، نگهداری مسیر پرداخت قدیمی برای تحویل تجربه پرداخت قابل اعتماد انجام می‌شود.",
+      "status": "cancelled",
+      "assigneeId": "u-mina",
+      "blocked": false,
+      "blockerReason": null,
+      "startDate": "2026-10-20",
+      "dueDate": "2026-10-28",
+      "priority": "normal",
+      "comments": [
+        {
+          "author": "سارا",
+          "text": "داده نمونه: نتیجه بررسی در جلسه تیم پیگیری می‌شود.",
+          "authorEn": "Sara",
+          "textEn": "Sample discussion: we will follow up on the review outcome in the team meeting."
+        }
+      ],
+      "titleEn": "Maintain legacy checkout",
+      "acceptanceCriteria": [
+        "مسیر قدیمی حذف شود؛ ادامه نگهداری این مسیر لغو شده است."
+      ],
+      "dependencies": [],
+      "descriptionEn": "Implement “Maintain legacy checkout” in the store checkout flow to support a reliable payment experience.",
+      "acceptanceCriteriaEn": [
+        "The legacy path is retired; ongoing maintenance of this path is cancelled."
+      ],
+      "blockerReasonEn": null,
+      "area": "mobile"
+    }
+  ],
+  "expected": {
+    "total": 12,
+    "remaining": 6,
+    "blockedRemaining": 2,
+    "remainingKeys": [
+      "EMP-101",
+      "EMP-102",
+      "EMP-103",
+      "EMP-104",
+      "EMP-105",
+      "EMP-106"
+    ],
+    "blockedKeys": [
+      "EMP-103",
+      "EMP-104"
+    ],
+    "unscheduledKeys": [
+      "EMP-104"
+    ]
+  },
+  "agents": [
+    {
+      "id": "agent-checkout",
+      "name": "Hermes",
+      "nameFa": "هرمس",
+      "synthetic": true
+    }
+  ],
+  "fixturePurpose": "Historical Stage 1 acceptance scenario (12 total / 6 remaining / 2 blocked); not the running Demo dataset."
+}

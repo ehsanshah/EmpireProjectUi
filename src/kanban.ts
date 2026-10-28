@@ -3,10 +3,11 @@ import {orderOf,type Area,type Issue,type Status} from './domain';
 export type BoardColumn='backlog'|'todo'|'in_progress'|'review'|'done';
 export const boardColumns:BoardColumn[]=['backlog','todo','in_progress','review','done'];
 export const boardAreas:Area[]=['web','mobile'];
+export const mappedBoardColumn=(issue:Issue):BoardColumn|null=>issue.status==='cancelled'?null:issue.status==='completed'?'done':boardColumns.includes(issue.status as BoardColumn)?issue.status as BoardColumn:null;
 export const boardColumn=(issue:Issue):BoardColumn=>issue.status==='completed'||issue.status==='cancelled'?'done':issue.status;
 export const boardOrder=(issue:Issue)=>issue.boardOrder??orderOf(issue);
-export const wipCount=(issues:Issue[])=>issues.filter(issue=>issue.status==='in_progress').length;
-export const boardCards=(issues:Issue[],area:Area,column:BoardColumn)=>issues.filter(issue=>issue.area===area&&boardColumn(issue)===column).sort((a,b)=>boardOrder(a)-boardOrder(b));
+export const wipCount=(issues:Issue[])=>issues.filter(issue=>!issue.archived&&issue.status==='in_progress').length;
+export const boardCards=(issues:Issue[],area:Area,column:BoardColumn)=>issues.filter(issue=>!issue.archived&&issue.area===area&&mappedBoardColumn(issue)===column).sort((a,b)=>boardOrder(a)-boardOrder(b)||a.id.localeCompare(b.id));
 export type BoardMove={id:string;area:Area;column:BoardColumn;index:number};
 export type BoardMoveResult={issues:Issue[];reason?:'wip'|'missing'};
 

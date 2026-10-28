@@ -1,0 +1,7 @@
+source_id,title,description,type,priority,labels,parent_ref,existing_key
+EP-NEW,Checkout release readiness,Group the release preparation,epic,high,payments,,
+TASK-NEW,Audit payment gateway retries,Check retry policy and evidence,task,normal,payments,EP-NEW,
+FEAT-1,Document refund edge cases,Describe refund scenarios,feature,normal,ux,EP-NEW,
+TASK-NEW,Duplicate audit row,This row must be skipped,task,normal,payments,EP-NEW,
+BAD-1,,Missing title stays failed,task,normal,risk,,
+EDIT-102,Clarify failed payment errors,Update existing scoped issue,task,high,payments,,EMP-102

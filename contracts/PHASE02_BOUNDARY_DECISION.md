@@ -1,0 +1,11 @@
+# Phase 02 boundary decision — proposed, not server verified
+
+Source: `reference/EmpireProject_UI_Engine_API_Contract_FA_v1.0.md` sections 9–10, 11 event stream and 18. The repository has no actual Engine OpenAPI, event schema, BFF, staging URL, auth configuration or test identities. The `PHASE02_PROPOSED_OPENAPI.json` and event schema are client proposals only. Their operation IDs are invented placeholders and are **not** actual Engine IDs.
+
+The UI uses one `CoreClient` boundary (`src/core/contracts.ts`). The Demo adapter (`src/core/demoClient.ts`) implements in-memory session, project scope, read envelopes, opaque ETags, validated transitions, idempotency, receipt/activity, 202 operation polling, unknown-outcome lookup and scoped event metadata. It stores project creation through the existing local Demo adapter, with a selected human Owner. It does not implement enterprise authorization or durable audit.
+
+The proposed Live adapter (`src/core/httpClient.ts`) maps session to `/api/session`, Engine calls to same-origin `/api/ep/v1`, project-scoped reads/commands/events under `P`, and operation plus command-key lookup under `O`. `createLiveCoreClient()` fails closed until actual route/shape/auth negotiation and staging integration have been verified. `VITE_CORE_MODE=live` shows an explicit unavailable state; it never mounts Demo data. No SPA bearer fallback is selected.
+
+The source requires cookie-based BFF session with CSRF and Origin validation, server-side ACL, opaque strong ETags, Problem Details, idempotency retention and receipt reconciliation. The Demo exercises their client behavior but does not claim these controls exist on a server. Any mismatch in route, response envelope, ETag header/body, transition schema, SSE cursor/replay, operation lifecycle or permission revision requires a follow-up ADR and contract test before enabling Live.
+
+Owner/input: Backend supplies actual OpenAPI, event schema, error/receipt examples and idempotency retention; IAM/Backend supplies BFF session/CSRF and least-privilege test identities; DevOps supplies non-production staging URL and reachability. Exit evidence: generated typed client against actual definitions, contract tests, authenticated staging smoke of full vertical slice, scoped SSE replay/revoke and receipt audit evidence.

@@ -1,0 +1,162 @@
+/* One restrained color language for Classic and Glass. Accent is a user preference;
+   semantic status colors remain fixed and occupy only small indicators. */
+:root[data-accent=ocean]{--accent-light:#245c9f;--accent-dark:#8db9ef;--accent-rgb:36 92 159}
+:root[data-accent=forest]{--accent-light:#166d62;--accent-dark:#76c5b6;--accent-rgb:22 109 98}
+:root[data-accent=iris]{--accent-light:#6651a0;--accent-dark:#b6a6e7;--accent-rgb:102 81 160}
+:root[data-accent=copper]{--accent-light:#8b5d38;--accent-dark:#d9aa80;--accent-rgb:139 93 56}
+:root[data-theme=light][data-accent]{--canvas:#e8edf3;--surface:#fbfcfe;--raised:#f1f4f8;--ink:#19283b;--muted:#526276;--subtle:#66768a;--border:#cbd4df;--blue:var(--accent-light);--blue-soft:color-mix(in srgb,var(--blue) 12%,var(--surface));--glass:#f8fafde8;--accent:var(--accent-light);--accent-soft:color-mix(in srgb,var(--accent) 10%,var(--surface));--accent-line:color-mix(in srgb,var(--accent) 28%,var(--border));--positive:#176755;--positive-soft:#e8f2ee;--caution:#845a25;--caution-soft:#f8f1e7;--danger:#a0484b;--danger-soft:#f9eeee;--review:#665484;--review-soft:#f0edf5;--quiet-surface:#f6f8fb}
+:root[data-theme=dark][data-accent]{--canvas:#111821;--surface:#19232e;--raised:#222f3d;--ink:#edf2f7;--muted:#b2bfcd;--subtle:#92a2b4;--border:#3c4b5b;--blue:var(--accent-dark);--blue-soft:color-mix(in srgb,var(--blue) 14%,var(--surface));--glass:#1b2939e8;--accent:var(--accent-dark);--accent-soft:color-mix(in srgb,var(--accent) 12%,var(--surface));--accent-line:color-mix(in srgb,var(--accent) 34%,var(--border));--positive:#81c9af;--positive-soft:#203c36;--caution:#e0b879;--caution-soft:#3b3327;--danger:#e49a9a;--danger-soft:#412d32;--review:#bba7d8;--review-soft:#352e43;--quiet-surface:#202b37}
+:root[data-accent] button:focus-visible,:root[data-accent] input:focus-visible,:root[data-accent] select:focus-visible,:root[data-accent] textarea:focus-visible,:root[data-accent] summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+:root[data-accent] input[type=checkbox],:root[data-accent] input[type=radio],:root[data-accent] progress{accent-color:var(--accent)}
+:root[data-accent] .app{background:radial-gradient(ellipse at 16% -28%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 58%),var(--canvas)}
+:root[data-accent] .ambient-one,:root[data-accent] .ambient-two{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+:root[data-accent] .primary,:root[data-accent] .command-bar .submit{background:var(--accent);border-color:var(--accent);color:var(--surface);box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 18%,transparent)}
+:root[data-accent] .primary:hover,:root[data-accent] .command-bar .submit:hover{background:color-mix(in srgb,var(--accent) 86%,var(--ink));color:var(--surface)}
+:root[data-accent] .sidebar .project-icon,:root[data-accent] .brand-mark{color:var(--accent);background:var(--accent-soft);border-color:var(--accent-line)}
+:root[data-accent] .sidebar nav .active,:root[data-accent] .tabs .selected,:root[data-accent] .filters .filter-active,:root[data-accent] .plan-tabs button[aria-selected=true]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line);box-shadow:inset 3px 0 0 var(--accent)}
+:root[data-accent][dir=rtl] .sidebar nav .active{box-shadow:inset -3px 0 0 var(--accent)}
+:root[data-accent] .sidebar nav .active svg,:root[data-accent] .surface-icon,:root[data-accent] .journey-icon,:root[data-accent] .assistant-symbol{color:var(--accent)}
+:root[data-accent] .progress span{background:var(--accent)}
+:root[data-accent] .workspace-surface,:root[data-accent] .command-dock,:root[data-accent] .assistant{border-color:var(--border)}
+:root[data-accent] .command-dock,:root[data-accent] .assistant{background:var(--glass)}
+:root[data-accent] .status.in_progress,:root[data-accent] .issue-dot.in_progress{color:var(--accent);border-color:var(--accent)}
+:root[data-accent] .status.review,:root[data-accent] .issue-dot.review{color:var(--review);border-color:var(--review)}
+:root[data-accent] .status.completed,:root[data-accent] .status.done,:root[data-accent] .issue-dot.completed,:root[data-accent] .issue-dot.done{color:var(--positive);border-color:var(--positive)}
+:root[data-accent] .blocked,:root[data-accent] .priority.high{color:var(--caution);background:var(--caution-soft);border-color:color-mix(in srgb,var(--caution) 24%,var(--border))}
+:root[data-accent] .journeys>button,.accent-menu,.phase09-card,.phase10-card{box-shadow:0 3px 13px #0e1c2b0d}
+
+/* User-selected accent: a compact, keyboard-accessible control, never a card color. */
+.accent-picker{position:relative;z-index:80;flex:none}
+.accent-picker summary{list-style:none;width:30px;height:30px;border:1px solid var(--border);border-radius:9px;display:grid;place-items:center;cursor:pointer;background:var(--surface)}
+.accent-picker summary::-webkit-details-marker{display:none}
+.accent-current,.accent-swatch{display:inline-block;width:15px;height:15px;border-radius:50%;background:var(--accent);border:2px solid var(--surface);box-shadow:0 0 0 1px var(--accent-line);flex:none}
+.accent-menu{position:absolute;top:calc(100% + 9px);inset-inline-end:0;width:230px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--ink);display:grid;gap:4px;box-shadow:0 16px 38px #0e1c2b35}
+.accent-menu strong{font-size:12px}.accent-menu small{font-size:10px;line-height:1.5;margin-bottom:5px}
+.accent-menu button{justify-content:flex-start;width:100%;padding:7px 8px;color:var(--ink)!important;font-size:11px}
+.accent-menu button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent)!important}.accent-menu button svg{margin-inline-start:auto}
+.accent-swatch.ocean{background:#245c9f}.accent-swatch.forest{background:#166d62}.accent-swatch.iris{background:#6651a0}.accent-swatch.copper{background:#8b5d38}
+@media(max-width:560px){.accent-picker summary{width:27px;height:27px}.accent-menu{width:min(220px,calc(100vw - 20px))}}
+
+/* Board: neutral cards and columns; WIP, blocked and Run states carry semantics. */
+:root[data-theme=light][data-accent] .kanban-board,:root[data-theme=dark][data-accent] .kanban-board{background:var(--quiet-surface);color:var(--ink)}
+:root[data-accent] .kb-toolbar,:root[data-accent] .kb-settings,:root[data-accent] .kb-lane,:root[data-accent] .kb-lane-header,:root[data-accent] .kb-column,:root[data-accent] .kb-card{background:var(--surface);color:var(--ink);border-color:var(--border);box-shadow:none}
+:root[data-accent] .kb-lane-header,:root[data-accent] .kb-column-head{border-bottom-color:var(--border)}
+:root[data-accent] .kb-column{background:var(--quiet-surface)}
+:root[data-accent] .kb-card{border-inline-start:3px solid var(--accent-line);min-height:95px}
+:root[data-accent] .kb-card:hover{border-color:var(--accent-line);border-inline-start-color:var(--accent);box-shadow:0 5px 14px #0e1c2b18}
+:root[data-accent] .kb-card-title,:root[data-accent] .kb-card-top bdi,:root[data-accent] .kb-toolbar>div:first-child span,:root[data-accent] .kb-lane-header small,:root[data-accent] .kb-lane-header span:not(.kb-lane-mark){color:var(--ink)}
+:root[data-accent] .kb-card-actions button,:root[data-accent] .kb-column-head b,:root[data-accent] .kb-empty{color:var(--muted)}
+:root[data-accent] .kb-area-pill,:root[data-accent] .kb-wip-summary{background:var(--raised);color:var(--muted);border-color:var(--border)}
+:root[data-accent] .kb-wip-summary strong,:root[data-accent] .kb-lane-mark{color:var(--accent);background:var(--accent)}
+:root[data-accent] .kb-wip-summary strong{background:transparent}
+:root[data-accent] .kb-wip-summary.at-limit,:root[data-accent] .kb-column.at-limit{background:var(--caution-soft);border-color:var(--caution)}
+:root[data-accent] .kb-wip-summary.at-limit strong,:root[data-accent] .kb-column.at-limit .kb-column-head{color:var(--caution)}
+:root[data-accent] .kb-priority.high,:root[data-accent] .kb-blocked{color:var(--caution);background:none}
+:root[data-accent] .kb-placeholder{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent-line)}
+:root[data-accent] .kb-run-badge{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+
+/* Calendar and timeline: subdued events, readable category stripes and markers. */
+:root[data-accent] .cat-design{--stripe:var(--positive)}:root[data-accent] .cat-engineering{--stripe:var(--accent)}:root[data-accent] .cat-review{--stripe:var(--review)}:root[data-accent] .cat-release{--stripe:var(--caution)}
+:root[data-accent] .calendar-event,:root[data-accent] .month-entry,:root[data-accent] .month-deadline{background:color-mix(in srgb,var(--stripe) 8%,var(--surface));border-color:color-mix(in srgb,var(--stripe) 28%,var(--border));border-inline-start:3px solid var(--stripe);color:var(--ink)}
+:root[data-accent] .calendar-all-day-chip,.month-planned{background:var(--accent-soft);border-inline-start-color:var(--accent);color:var(--ink)}
+:root[data-accent] .calendar-all-day-chip.deadline,:root[data-accent] .month-deadline{--stripe:var(--caution);background:var(--caution-soft);border-inline-start-color:var(--caution)}
+:root[data-accent] .calendar-date.is-today strong,:root[data-accent] .calendar-mark{background:var(--accent-soft);color:var(--accent)}
+:root[data-accent] .calendar-modes button[aria-pressed=true],:root[data-accent] .calendar-message{background:var(--accent-soft);color:var(--accent)}
+:root[data-accent] .calendar-now,:root[data-accent] .calendar-now:before{background:var(--danger)}
+:root[data-accent] .tl-item{background:var(--accent-soft);border-color:var(--accent-line);color:var(--ink)}
+:root[data-accent] .tl-item.marker,:root[data-accent] .tl-item.blocked{background:var(--caution-soft);border-color:var(--caution)}
+:root[data-accent] .tl-item.invalid{background:var(--danger-soft);border-color:var(--danger)}
+
+/* Planning, Intake, DataCart and Agent delivery share the same surfaces. */
+:root[data-accent] .plan-panels section,:root[data-accent] .plan-tree,:root[data-accent] .plan-change-log{background:var(--surface);border-color:var(--border)}
+:root[data-accent] .plan-tabs button[aria-selected=true],:root[data-accent] .plan-message{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .plan-fit.fits{border-color:var(--positive)}:root[data-accent] .plan-fit.does_not_fit{border-color:var(--danger)}:root[data-accent] .plan-fit.fit_unknown{border-color:var(--caution)}
+:root[data-accent] .phase09,:root[data-accent] .phase10,:root[data-accent] .datacart{color:var(--ink)}
+:root[data-accent] .phase09-banner,:root[data-accent] .phase10-banner,:root[data-accent] .datacart-notice{background:var(--accent-soft);color:var(--ink);border-color:var(--accent-line)}
+:root[data-accent] .phase09-list,:root[data-accent] .phase09-card,:root[data-accent] .phase10-card,:root[data-accent] .phase10-listitem,:root[data-accent] .datacart-panel{background:var(--surface);color:var(--ink);border-color:var(--border)}
+:root[data-accent] .phase09-list button,:root[data-accent] .phase09-card input:not([type=checkbox]),:root[data-accent] .phase09-card textarea,:root[data-accent] .phase10-card select,:root[data-accent] .phase10-card textarea,:root[data-accent] .datacart input,:root[data-accent] .datacart select{background:var(--surface);color:var(--ink);border-color:var(--border)}
+:root[data-accent] .phase09-list button.selected,:root[data-accent] .phase10-listitem.selected,:root[data-accent] .phase10-tabs button[aria-selected=true]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .phase09-card dl>div,:root[data-accent] .phase09-diff pre,:root[data-accent] .phase10-tabs,:root[data-accent] .phase10-card dl>div,:root[data-accent] .phase10-connection,:root[data-accent] .phase10-brief,:root[data-accent] .phase10-artifact,:root[data-accent] .phase10-diff>div,:root[data-accent] .datacart th,:root[data-accent] .datacart-steps li{background:var(--quiet-surface);color:var(--ink);border-color:var(--border)}
+:root[data-accent] .phase09-card button:not(.primary),:root[data-accent] .phase09-back,:root[data-accent] .phase10-actions button:not(.primary),:root[data-accent] .phase10-card>button,:root[data-accent] .datacart button{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .phase09 .primary,:root[data-accent] .phase10 .primary{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+:root[data-accent] .phase09-success,:root[data-accent] .phase10-state.ready,:root[data-accent] .phase10-message{background:var(--positive-soft);color:var(--positive);border-color:var(--positive)}
+:root[data-accent] .phase09-message,:root[data-accent] .phase10-warning,:root[data-accent] .phase10-state.unready{background:var(--caution-soft);color:var(--caution);border-color:var(--caution)}
+:root[data-accent] .phase09-card.conflict{background:var(--danger-soft);border-color:var(--danger)}
+:root[data-accent] .phase10-state,:root[data-accent] .phase10-chips span{background:var(--raised);color:var(--muted);border-color:var(--border)}
+:root[data-accent] .phase10-state.ready{background:var(--positive-soft);color:var(--positive);border-color:var(--positive)}
+:root[data-accent] .phase10-state.unready{background:var(--caution-soft);color:var(--caution);border-color:var(--caution)}
+:root[data-accent] .phase10-drawer-summary{background:var(--accent-soft);color:var(--ink);border-color:var(--accent-line)}
+:root[data-accent] .phase10-drawer-summary button{background:var(--surface);color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .datacart-heading p,:root[data-accent] .datacart-meta,:root[data-accent] .phase09-muted,:root[data-accent] .phase10-card dt,:root[data-accent] .phase10-listitem small{color:var(--muted)}
+:root[data-accent] .datacart-error,:root[data-accent] .phase09-card li.problem{color:var(--danger)}
+:root[data-accent] .datacart-steps li.done{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .phase10-card progress{accent-color:var(--accent)}
+:root[data-accent] .clarification-card{border-color:var(--border);background:var(--surface);color:var(--ink)}
+:root[data-accent] .clarification-card button:focus-visible{outline-color:var(--accent)}
+
+/* Dependency paths and AI clarification use the same role colors. */
+:root[data-accent] .flow-view{--flow-line:var(--border);--flow-card-bg:var(--surface);--flow-card-border:var(--border);--flow-text:var(--ink);--flow-muted:var(--muted)}
+:root[data-accent] .flow-heading svg{color:var(--accent)}
+:root[data-accent] .flow-actions button:hover,:root[data-accent] .flow-actions button.pressed,:root[data-accent] .flow-insight{background:var(--accent-soft)}
+:root[data-accent] .flow-edge.lit .flow-edge-visible{stroke:var(--accent)}
+:root[data-accent] .flow-edge-hit:focus-visible{stroke:var(--accent-line)}
+:root[data-accent] .flow-card:hover,:root[data-accent] .flow-card:focus-visible,:root[data-accent] .flow-card.selected{border-color:var(--accent);outline-color:var(--accent)}
+:root[data-accent] .flow-card-status{background:var(--raised);color:var(--muted)}
+:root[data-accent] .status-done .flow-card-status,:root[data-accent] .status-ready .flow-card-status{background:var(--positive-soft);color:var(--positive)}
+:root[data-accent] .status-needs_decision .flow-card-status{background:var(--caution-soft);color:var(--caution)}
+:root[data-accent] .status-in_progress .flow-card-status{background:var(--accent-soft);color:var(--accent)}
+:root[data-accent] .status-waiting .flow-card-status{background:var(--review-soft);color:var(--review)}
+:root[data-accent] .ai-response,.agent-context{background:var(--quiet-surface);color:var(--ink);border-color:var(--border)}
+:root[data-accent] .ai-error{color:var(--danger)!important}
+:root[data-accent] .clarification-preview-controls>button,:root[data-accent] .clarification-preview-controls>div{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .clarification-preview-controls>div button{color:var(--accent)}
+:root[data-accent] .clarification-preview-controls>div button[aria-pressed=true]{background:var(--accent);color:var(--surface)}
+:root[data-accent] .clarification-card{--clarification-line:var(--border);--clarification-text:var(--ink);--clarification-muted:var(--muted);box-shadow:0 8px 22px #0e1c2b18}
+:root[data-accent] .clarification-kicker,:root[data-accent] .clarification-option-arrow{color:var(--accent)}
+:root[data-accent] .clarification-close,:root[data-accent] .clarification-options button,:root[data-accent] .clarification-actions button,:root[data-accent] .clarification-result button{background:var(--quiet-surface);color:var(--ink);border-color:var(--border)}
+:root[data-accent] .clarification-options button:hover,:root[data-accent] .clarification-options button:focus-visible,:root[data-accent] .clarification-result{background:var(--accent-soft)}
+:root[data-accent] .clarification-number{color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .clarification-direct>div{background:var(--surface);border-color:var(--border)}
+:root[data-accent] .clarification-direct input{color:var(--ink)}
+:root[data-accent] .clarification-direct button{background:var(--accent);color:var(--surface)}
+:root[data-accent] .phase09-task legend,:root[data-accent] .phase09 .kind,:root[data-accent] .phase10-kicker,:root[data-accent] .datacart-heading small{color:var(--accent)}
+:root[data-accent] .phase09-card dt,:root[data-accent] .phase09-list small,:root[data-accent] .phase10-connection small,:root[data-accent] .datacart-heading p{color:var(--muted)}
+
+/* Project context and voice forms inherit the chosen accent without recoloring data. */
+:root[data-accent] .project-switch-trigger{background:var(--raised);border-color:var(--border);color:var(--ink)}
+:root[data-accent] .project-switch-trigger .project-mark{background:var(--accent)!important;color:var(--surface)}
+:root[data-accent] .project-row.selected,:root[data-accent] .project-browser-choice{background:var(--accent-soft);border-color:var(--accent-line)}
+:root[data-accent] .project-current-dot{background:var(--accent)}
+:root[data-accent] .voice-control,:root[data-accent] .voice-field.voice-filled,:root[data-accent] .voice-question{background:var(--accent-soft);border-color:var(--accent-line)}
+:root[data-accent] .voice-actions button,:root[data-accent] .voice-transcript button,:root[data-accent] .typed-transcript button,:root[data-accent] .voice-changes button{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+:root[data-accent] .voice-pending{background:var(--positive-soft);border-inline-start-color:var(--positive)}
+:root[data-accent] .voice-filled-tag,:root[data-accent] .project-created>svg{color:var(--positive)}
+:root[data-accent] .voice-field-error,:root[data-accent] .project-save-error,:root[data-accent] .voice-error{color:var(--danger)!important}
+
+/* Visible accent on the work itself: one family of tints, never per-card stickers. */
+:root[data-theme=light][data-accent]{--work-card:color-mix(in srgb,var(--accent) 22%,var(--surface));--work-card-hover:color-mix(in srgb,var(--accent) 30%,var(--surface));--work-row:color-mix(in srgb,var(--accent) 14%,var(--surface));--work-row-alt:color-mix(in srgb,var(--accent) 20%,var(--surface));--work-row-hover:color-mix(in srgb,var(--accent) 27%,var(--surface))}
+:root[data-theme=dark][data-accent]{--work-card:color-mix(in srgb,var(--accent) 24%,var(--surface));--work-card-hover:color-mix(in srgb,var(--accent) 31%,var(--surface));--work-row:color-mix(in srgb,var(--accent) 15%,var(--surface));--work-row-alt:color-mix(in srgb,var(--accent) 20%,var(--surface));--work-row-hover:color-mix(in srgb,var(--accent) 29%,var(--surface))}
+:root[data-accent] .kb-column[data-column=in_progress]{background:var(--accent-soft);border-color:var(--accent-line)}
+:root[data-accent] .kb-column[data-column=in_progress] .kb-column-head{color:var(--accent);border-bottom-color:var(--accent-line)}
+:root[data-accent] .kb-column[data-column=in_progress] .kb-column-head b{color:var(--accent)}
+:root[data-accent] .kb-card{background:var(--work-card);border-color:var(--accent-line);border-inline-start:5px solid var(--accent);border-inline-end:5px solid var(--accent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--surface) 70%,transparent)}
+:root[data-accent] .kb-card:hover,:root[data-accent] .kb-card:focus-within{background:var(--work-card-hover);border-color:var(--accent);box-shadow:0 5px 15px color-mix(in srgb,var(--accent) 17%,transparent)}
+:root[data-accent] .kb-card-top bdi{color:var(--accent);font-weight:750}
+:root[data-accent] .kb-card-title{color:var(--ink)}
+:root[data-accent] .kb-card-title:hover{color:var(--accent)}
+:root[data-accent] .kb-card.drag-source{opacity:.25}
+:root[data-accent] .kb-drag-preview{background:var(--work-card-hover);color:var(--ink);border:2px solid var(--accent);border-inline-start:5px solid var(--accent);border-inline-end:5px solid var(--accent);box-shadow:0 15px 35px #0e1c2b55}
+:root[data-accent] .kb-placeholder{background:var(--work-card);border-color:var(--accent)}
+:root[data-accent] .table-scroll tbody tr[data-issue] td{background:var(--work-row);border-bottom-color:var(--accent-line);transition:background .12s ease}
+:root[data-accent] .table-scroll tbody tr[data-issue]:nth-of-type(even) td{background:var(--work-row-alt)}
+:root[data-accent] .table-scroll tbody tr[data-issue]:hover td,:root[data-accent] .table-scroll tbody tr[data-issue]:focus-within td{background:var(--work-row-hover)}
+:root[data-accent] .table-scroll tbody tr[data-issue]:has(input[type=checkbox]:checked) td{background:var(--work-card-hover);box-shadow:inset 0 1px 0 var(--accent-line),inset 0 -1px 0 var(--accent-line)}
+:root[data-accent] .table-scroll tbody tr[data-issue] td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
+:root[data-accent][dir=rtl] .table-scroll tbody tr[data-issue] td:first-child{box-shadow:inset -4px 0 0 var(--accent)}
+:root[data-accent] .table-scroll tbody tr[data-issue] .key{color:var(--accent);font-weight:700}
+:root[data-accent] .table-scroll tbody tr[data-issue] .issue-title{font-weight:560}
+:root[data-accent] .table-scroll tbody tr[data-issue] .issue-link:hover .issue-title{color:var(--accent)}
+:root[data-accent] .table-scroll tbody tr[data-issue] .status.in_progress{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);border-radius:5px}
+:root[data-accent] .table-scroll tbody tr[data-issue] .status.review{background:var(--review-soft);color:var(--review);border:1px solid color-mix(in srgb,var(--review) 28%,var(--border));border-radius:5px}
+:root[data-accent] .table-scroll tbody tr[data-issue] .status.completed{background:var(--positive-soft);color:var(--positive);border:1px solid color-mix(in srgb,var(--positive) 28%,var(--border));border-radius:5px}
+:root[data-accent] .group-row th{background:var(--raised);color:var(--ink);border-bottom:2px solid var(--accent-line)}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposed scoped event metadata; not engine verified",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["cursor", "eventId", "eventType", "schemaVersion", "orgId", "projectId", "aggregateId", "aggregateVersion", "permissionRevision", "correlationId"],
+  "properties": {
+    "cursor": {"type": "string"}, "eventId": {"type": "string"},
+    "eventType": {"enum": ["WorkItemUpdated", "PermissionChanged", "stream_reset"]},
+    "schemaVersion": {"const": 1}, "orgId": {"type": "string"}, "projectId": {"type": "string"},
+    "aggregateId": {"type": "string"}, "aggregateVersion": {"type": "integer", "minimum": 0},
+    "permissionRevision": {"type": "string"}, "correlationId": {"type": "string"}
+  }
+}

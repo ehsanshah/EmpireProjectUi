@@ -1,0 +1,36 @@
+{
+  "label": "Phase 09 illustrative local Demo plan; no agent was assigned or dispatched",
+  "intake_kind": "objective",
+  "intake_title": "Improve checkout release readiness",
+  "required_clarification": "Checkout web and mobile",
+  "scope": "Checkout web and mobile",
+  "policy_revision": "demo-policy-v1",
+  "budget_ceiling": null,
+  "budget_currency": null,
+  "budget_unit": "currency",
+  "tasks": [
+    {
+      "id": "task-1",
+      "title": "Define release evidence",
+      "role": "Agent drafter (unassigned)",
+      "dependencies": [],
+      "scope": "Checkout web and mobile",
+      "acceptance": "Evidence checklist reviewed",
+      "tests": "Review checklist against source",
+      "definition_of_done": "Review recorded; no release claim",
+      "cost": null
+    },
+    {
+      "id": "task-2",
+      "title": "Review blockers",
+      "role": "Independent human reviewer (unassigned)",
+      "dependencies": ["task-1"],
+      "scope": "Checkout web and mobile",
+      "acceptance": "Blockers identified with source",
+      "tests": "Check blocker trace",
+      "definition_of_done": "Blocker review recorded",
+      "cost": null
+    }
+  ],
+  "execution_state": "not_requested"
+}

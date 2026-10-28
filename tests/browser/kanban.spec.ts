@@ -33,7 +33,7 @@ test('A–G: reorder, sized placeholder, shared WIP, collapse, lane move, keyboa
  await page.screenshot({path:'docs/screenshots/kanban-03-wip-full.png'});
  // C: a fifth card returns to its previous column.
  await dragTo(page,'EMP-104',`${webProgress} .kb-list`,.3);
- await expect(page.locator('.kb-notice')).toContainText('WIP limit reached');
+ await expect(page.locator('.kb-notice')).toContainText('WIP limit is full');
  await expect(page.locator(`${webTodo} .kb-card[data-issue="EMP-104"]`)).toBeAttached();
  await expect(page.getByTestId('wip-summary')).toContainText('4/4');
  // D: collapsing Done changes only presentation and preserves counts.

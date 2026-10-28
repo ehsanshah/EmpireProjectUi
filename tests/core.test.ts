@@ -40,5 +40,9 @@ describe('bounded investigation compositions',()=>{
   expect(await adapter.resolve('Show remaining work',initialState)).toEqual({type:'showIssues',remaining:true});
   expect(await adapter.resolve('چرا تحویل در خطر است؟',initialState)).toEqual({type:'investigateRisk'});
   expect(await adapter.resolve('کمک کن این مانع را رفع کنم',initialState)).toEqual({type:'helpUnblock',id:null});
+  expect(await adapter.resolve('إظهار العمل المتبقي',initialState)).toEqual({type:'showIssues',remaining:true});
+  expect(await adapter.resolve('المعطّل فقط',initialState)).toEqual({type:'refineFilter',blocked:true});
+  expect(await adapter.resolve('إظهار الجدول الزمني',initialState)).toEqual({type:'switchView',view:'timeline'});
+  expect(await adapter.resolve('افتح EMP-104',initialState)).toEqual({type:'openIssue',id:'demo-issue-104'});
  });
 });

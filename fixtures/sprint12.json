@@ -543,8 +543,8 @@
     }
   ],
   "expected": {
-    "total": 12,
-    "remaining": 6,
+    "total": 14,
+    "remaining": 8,
     "blockedRemaining": 2,
     "remainingKeys": [
       "EMP-101",
@@ -552,14 +552,18 @@
       "EMP-103",
       "EMP-104",
       "EMP-105",
-      "EMP-106"
+      "EMP-106",
+      "EMP-113",
+      "EMP-114"
     ],
     "blockedKeys": [
       "EMP-103",
       "EMP-104"
     ],
     "unscheduledKeys": [
-      "EMP-104"
+      "EMP-104",
+      "EMP-113",
+      "EMP-114"
     ]
   },
   "agents": [

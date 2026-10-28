@@ -24,7 +24,7 @@
 :root[data-design=glass] .breadcrumb{color:#e0dfeb}
 :root[data-design=glass] .breadcrumb strong{color:#fff}
 :root[data-design=glass] .demo-badge{color:#eeecf6;border-color:#fff5}
-:root[data-design=glass] .theme-toggle{display:none}
+:root[data-design=glass] .theme-toggle{display:grid;place-items:center;color:#f2f5ff;background:#ffffff1a;border:1px solid #ffffff45;border-radius:9px;width:30px;height:30px}
 :root[data-design=glass] .design-switch{border-radius:20px;background:#141b3233;border-color:#fff3}
 :root[data-design=glass] .design-switch button{border-radius:16px;color:#e8e8f3}
 :root[data-design=glass] .design-switch button[aria-pressed=true]{color:#222638;background:linear-gradient(#fff,#e8e7f4c4);border-color:#fff9;box-shadow:0 1px 8px #ffffff30}
@@ -108,3 +108,21 @@ html[dir=rtl][data-design=glass] .assistant{margin:14px 0 20px 24px}
 :root[data-design=glass] .app:has(.composition-risk) .workspace-heading p,:root[data-design=glass] .app:has(.composition-risk) .workspace-heading .eyebrow,:root[data-design=glass] .app:has(.composition-unblock) .workspace-heading p,:root[data-design=glass] .app:has(.composition-unblock) .workspace-heading .eyebrow{display:none}
 :root[data-design=glass] .app:has(.composition-risk) .workspace-heading h1,:root[data-design=glass] .app:has(.composition-unblock) .workspace-heading h1{font-size:18px}
 @media(max-width:560px){:root[data-design=glass] .workspace-heading h1{font-size:19px}}
+@media(max-width:560px){.design-switch{display:none}.preferences .theme-toggle{display:inline-flex;flex:none}.preferences select{max-width:110px}}
+:root[data-design=glass] .theme-toggle{display:inline-flex}
+:root[data-design=glass][data-theme=light]{color-scheme:light;--canvas:#dce8f8;--surface:#f8fbffed;--raised:#e9f0fb;--ink:#152944;--muted:#526989;--subtle:#6a7f9a;--border:#7d9dc54d;--blue:#245bb5;--blue-soft:#c9dcf9;--glass:#ffffffb8}
+:root[data-design=glass][data-theme=light] body{background:linear-gradient(#dceaffc8,#deebfad9),url('/images/courtyard-dusk.png') center/cover fixed no-repeat}
+:root[data-design=glass][data-theme=light] .app{background:linear-gradient(125deg,#f8fbfff0,#e6effbe8);border-color:#ffffffea}
+:root[data-design=glass][data-theme=light] .workspace-surface,:root[data-design=glass][data-theme=light] .command-dock{background:#f8fbffec;color:var(--ink)}
+:root[data-design=glass][data-theme=light] .calendar-event{color:#152944}
+:root[data-design=glass][data-theme=light] .drawer{background:linear-gradient(145deg,#fbfdfff7,#ecf3fdf7);color:var(--ink);border-inline-start-color:#a7bbd8;box-shadow:-20px 0 80px #14243a38}
+:root[data-design=glass][data-theme=light] .preferences select,:root[data-design=glass][data-theme=light] .breadcrumb,:root[data-design=glass][data-theme=light] .breadcrumb strong{color:#1a3559}
+:root[data-design=glass][data-theme=dark] .calendar-head,:root[data-design=glass][data-theme=dark] .calendar-all-day{background:#30384d}
+:root[data-design=glass][data-theme=light] .calendar-head,:root[data-design=glass][data-theme=light] .calendar-all-day{background:#f2f7ff}
+:root[data-design=glass][data-theme=light] .eyebrow,:root[data-design=glass][data-theme=light] .workspace-heading p,:root[data-design=glass][data-theme=light] .surface-footer,:root[data-design=glass][data-theme=light] .composer-context,:root[data-design=glass][data-theme=light] .feedback,:root[data-design=glass][data-theme=light] .command-bar input::placeholder,:root[data-design=glass][data-theme=light] .command-glyph{color:#385374}
+:root[data-design=glass][data-theme=light] .primary{background:#e4efff;border-color:#bbd0ed;color:#173b79;box-shadow:none}
+:root[data-design=glass][data-theme=light] .surface-footer{background:#edf4ff}
+:root[data-design=glass][data-theme=light] .calendar-toolbar-main strong,:root[data-design=glass][data-theme=light] .calendar-date strong{color:#16345b}
+:root[data-design=glass][data-theme=light] .calendar-all-day-chip{background:#dbeafe}
+@media(max-width:560px){:root[data-design=glass] .topbar .breadcrumb{display:flex!important;max-width:48%;gap:0;min-width:0}:root[data-design=glass] .topbar .breadcrumb>svg,:root[data-design=glass] .topbar .breadcrumb>.demo-badge{display:none}:root[data-design=glass] .topbar .preferences{width:auto;flex:1;justify-content:flex-end}:root[data-design=glass] .topbar .preferences select{max-width:68px}}
+:root[data-design=glass][data-theme=light] .table-scroll{background:#f9fbffeb;color:#20334f}:root[data-design=glass][data-theme=light] th{background:#dce8f8;color:#294665}:root[data-design=glass][data-theme=light] td{background:#f9fbff;color:#20334f;border-bottom-color:#b6c8e1}:root[data-design=glass][data-theme=light] tr:hover td{background:#ecf4ff}:root[data-design=glass][data-theme=light] .issue-title{color:#18334f}:root[data-design=glass][data-theme=light] .key,:root[data-design=glass][data-theme=light] .date,:root[data-design=glass][data-theme=light] .priority,:root[data-design=glass][data-theme=light] .owner select,:root[data-design=glass][data-theme=light] .status{color:#3d5879}:root[data-design=glass][data-theme=light] .status.in_progress{color:#2456b5}:root[data-design=glass][data-theme=light] .status.completed{color:#25715d}:root[data-design=glass][data-theme=light] .status.review{color:#775298}:root[data-design=glass][data-theme=light] .blocked{color:#855021;background:#fff0d9}:root[data-design=glass][data-theme=light] .filterbar,:root[data-design=glass][data-theme=light] .work-controls,:root[data-design=glass][data-theme=light] .surface-header{color:#294665}:root[data-design=glass][data-theme=light] .filterbar button,:root[data-design=glass][data-theme=light] .tabs button{color:#315271}:root[data-design=glass][data-theme=light] .filters .filter-active,:root[data-design=glass][data-theme=light] .tabs .selected{background:#dceaff;color:#183f76;border-color:#8ab0df}

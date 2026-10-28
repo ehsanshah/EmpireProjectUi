@@ -78,7 +78,6 @@ test('local create, error/retry, responsive layouts, Persian and light theme',as
  await expect(page.getByTestId('risk-investigation')).toContainText('منتظر تأیید ساختار امضا');
  await page.screenshot({path:'docs/screenshots/redesign/07-persian-risk.png'});
  await page.getByLabel('زبان',{exact:true}).selectOption('en');
- await page.getByRole('button',{name:'Toggle theme',exact:true}).click();
  await expect(page.locator('html')).toHaveAttribute('data-theme','light');
  await page.screenshot({path:'docs/screenshots/redesign/08-light-risk.png'});
 });

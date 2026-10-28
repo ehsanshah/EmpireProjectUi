@@ -1,6 +1,6 @@
 # Glass design comparison
 
-**Update:** the user has now accepted this appearance. Glass is the default; the earlier navy design remains at `?design=current` via **Previous design**. Source snapshot preservation still applies. Row reordering was added within the prototype. The notes below record the earlier comparison stage.
+**Latest update:** following Phase 06 review feedback, Classic in light mode is the default. The prior navy design is labeled **Classic** (`?design=current` remains the route identifier); Glass remains selectable through the switch or `?design=glass`. The comparison history below records earlier defaults and decisions.
 
 Status: `awaiting_visual_and_interaction_review` / `awaiting_prototype_review`.
 
