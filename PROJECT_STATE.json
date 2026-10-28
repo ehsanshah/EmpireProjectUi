@@ -13,7 +13,7 @@
   },
   "application_stack": "React 19 + TypeScript 5.7 + Vite 6; npm/package-lock.json; Vitest + Playwright (Chrome)",
   "source_contract": "reference/EmpireProject_UI_Engine_API_Contract_FA_v1.0.md",
-  "execution_note": "Phase 15 local Demo UI and UX explicitly approved by the user. The reviewed source was commit df57ad77b0111926ebb4bc90d598b65395deee7b with a clean working tree at approval. Final UI handoff is recorded in UI_HANDOFF.md; proposed first Live slice and blockers are in ENGINE_INTEGRATION_BACKLOG.md. Contract readiness, Live integration and Production readiness remain blocked. No backend implementation or deployment began.",
+  "execution_note": "Phases 00–15 UI and UX approved for each submitted report’s tested Demo scope under the user’s 2026-10-28 clarification. Reviewed application source: df57ad77b0111926ebb4bc90d598b65395deee7b, clean at final UI approval. Contract readiness, Live integration, unavailable capabilities and Production readiness remain blocked or unverified. UI handoff only; no backend implementation or deployment.",
   "phases": [
     {
       "id": "00",
@@ -36,6 +36,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I approve the Phase 00 UI and UX baseline review as sufficient to proceed. This does not mean all existing screens are final."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/BASELINE_REPORT.md"
       }
     },
     {
@@ -58,6 +63,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of Phase 01."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE01_REPORT.md"
       }
     },
     {
@@ -81,6 +91,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of Phase 02."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE02_REPORT.md"
       }
     },
     {
@@ -104,6 +119,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of Phase 03."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE03_REPORT.md"
       }
     },
     {
@@ -127,6 +147,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of Phase 04."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE04_REPORT.md"
       }
     },
     {
@@ -150,6 +175,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of Phase 05."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE05_REPORT.md"
       }
     },
     {
@@ -174,6 +204,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of Phase 06, including the latest planning-tab fixes."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE06_REPORT.md"
       }
     },
     {
@@ -198,6 +233,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve the UI and UX of the tested Phase 07 Demo flows. Real microphone transcription and Live Engine integration remain unverified; do not mark them accepted or complete."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE07_REPORT.md"
       }
     },
     {
@@ -222,6 +262,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve the UI and UX of the tested Phase 08 local CSV Demo flows. Real storage, malware scanning, server import, Google Sheets, Live Engine integration and real microphone transcription remain blocked or unverified. Preserve those statuses."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE08_REPORT.md"
       }
     },
     {
@@ -245,6 +290,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 09 local Demo flows. Preserve all existing Live blockers and unverified capabilities; this approval does not verify actual agent execution."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE09_REPORT.md"
       }
     },
     {
@@ -268,6 +318,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 10 local Demo flows. This does not verify real Agent execution, API/MCP probes, authorization enforcement or Live integration. Preserve all documented blockers."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE10_REPORT.md"
       }
     },
     {
@@ -292,6 +347,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve the UI and UX of the tested Phase 11 Demo, including the Persian and Arabic interface changes. This approval does not verify Live storage, authorization, indexing, artifact access, deployment or unavailable integrations. Preserve all documented blockers."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE11_REPORT.md"
       }
     },
     {
@@ -316,6 +376,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 12 Demo flows. Live authorization, storage, delivery and historical metrics without event history remain unverified or unavailable."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE12_REPORT.md"
       }
     },
     {
@@ -340,6 +405,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of Phase 13, including the configurable Board correction, for the tested local Demo. Live schema publication and server authorization remain unverified."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE13_REPORT.md"
       }
     },
     {
@@ -363,6 +433,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve both the UI and UX of the tested Phase 14 local Demo flows. Preserve all documented Live blockers."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE14_REPORT.md"
       }
     },
     {
@@ -386,6 +461,11 @@
       "ux_review": {
         "status": "approved",
         "user_evidence": "I explicitly approve the final UI and UX of the Phase 15 local Demo."
+      },
+      "reported_demo_scope_approval": {
+        "status": "user_approved",
+        "basis": "submitted_phase_report_confirmed_by_user_2026-10-28",
+        "report": "evidence/PHASE15_REPORT.md"
       }
     }
   ],
@@ -485,6 +565,13 @@
       "decision": "ui_and_ux_approved_for_tested_local_demo",
       "user_message": "I explicitly approve the final UI and UX of the Phase 15 local Demo.",
       "recorded_on": "2026-10-28"
+    },
+    {
+      "phase": "00-15",
+      "decision": "all_submitted_phase_reports_approve_reported_demo_ui_and_ux",
+      "user_message": "The user confirms that all submitted phase-completion reports constitute their UI and UX approval for the reported scope. They communicate any rejection directly during implementation.",
+      "scope": "reported_local_demo_only",
+      "recorded_on": "2026-10-28"
     }
   ],
   "unresolved_contract_decisions": [
@@ -497,5 +584,13 @@
     "CD-07",
     "CD-08"
   ],
-  "review_gate": "Explicit user approval of both UI and UX after every phase"
+  "review_gate": "A submitted phase-completion report constitutes user UI and UX approval for its reported Demo scope under the 2026-10-28 clarification; direct rejection or requested changes take precedence. No automatic next phase, Live acceptance or production authorization.",
+  "approval_clarification": {
+    "recorded_on": "2026-10-28",
+    "user_message": "The user confirms that all submitted phase-completion reports constitute their UI and UX approval for the reported scope. They communicate any rejection directly during implementation.",
+    "scope": "reported_local_demo_only",
+    "applies_to_phases": "00-15",
+    "requires_separate_post_report_confirmation": false,
+    "live_and_production_acceptance": false
+  }
 }

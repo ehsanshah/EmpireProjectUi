@@ -2,6 +2,11 @@
 
 As of 2026-10-28:
 
+The user confirms that every submitted Phase 00–15 completion report constitutes
+UI and UX approval for its reported local Demo scope. Direct rejections were to be
+communicated during implementation. This clarification is recorded in
+`PROJECT_STATE.json` and `UI_UX_REVIEW_GATE.md`; it does not expand any Live gate.
+
 | Gate | Status | Basis |
 |---|---|---|
 | Demo UI | **APPROVED; automated PASS** | User explicitly approved final Phase 15 local Demo UI and UX. Local build, 125/125 unit and 101/101 Chrome tests; Docker UI-only health/routing/CSP and three-language font smoke. Scope and limitations in `PHASE15_REPORT.md`. |

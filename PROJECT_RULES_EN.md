@@ -5,13 +5,13 @@ The latest user request authorizes completion of the ENTIRE UI in explicit phase
 building on existing work. Earlier prototype-only instructions are superseded for
 the phase the user has now requested. Do not delete or rewrite old instruction
 files to force this outcome: record the conflict and follow the user's newer scope.
-Implement one requested phase per run; deliver concrete evidence and stop for review.
-The user explicitly requires UI AND UX review after EVERY phase. Before starting
-the next phase, the preceding phase must have both explicit user UI approval and
-explicit user UX approval. One clear user message may approve both. A bare
-“continue”, a screenshot being viewed, a test pass or silence does not imply both
-approvals. Finish all authorized current-phase work and make it reviewable before
-stopping at this user-requested gate. Read UI_UX_REVIEW_GATE.md.
+Implement one requested phase per run and deliver concrete evidence. The user
+clarified on 2026-10-28 that each **submitted phase-completion report** constitutes
+their UI and UX approval for its **reported Demo scope**; they communicate
+rejections directly during implementation. Phases 00–15 have been approved on
+that basis. An internal draft, screenshot view, test pass, silence or bare
+“continue” does not create approval. A report's approval does not authorize the
+next phase by itself. Read UI_UX_REVIEW_GATE.md for the current rule and scope.
 
 Read UI_UX_REVIEW_GATE.md and AI_CLARIFICATION_UX_EN.md.
 Read the repository's applicable instructions. Read this pack's current state,
@@ -76,9 +76,11 @@ Project removal is archive/tombstone under the contract, not destructive deletio
 ## Phase completion
 Use statuses pending / in_progress / awaiting_ui_ux_review / revising / accepted /
 blocked for implementation, and NOT_RUN / PASS / FAIL / BLOCKED / UNVERIFIED
-for each test. Track Demo and Live independently. Never write accepted on behalf
-of the user. Both ui_review and ux_review must be explicitly approved by the user
-before implementation_status can become accepted or the next phase can start. Work that passes locally can be awaiting_ui_ux_review while Live is blocked.
+for each test. Track Demo and Live independently. Record approval only from the
+user's direct decision or their confirmed submitted-report rule, with the exact
+reported scope and evidence. A rejected or undelivered report remains open; a
+locally passing draft can remain awaiting_ui_ux_review while Live is blocked.
+Start another phase only on the user's request, even after a report is approved.
 If a future phase depends on unavailable Live infrastructure, implement its
 reviewable Demo/UI seam and record the blocker with an owner and exact input.
 Do not label the product production-complete with unresolved required integration.

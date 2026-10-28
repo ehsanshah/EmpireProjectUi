@@ -1,5 +1,14 @@
 # EmpireProject — prototype-first delivery
 
+## Current handoff and review clarification (2026-10-28)
+The historical Stage 1 instructions below document the original prototype gate.
+The user's later phased requests superseded that scope for Phases 00–15. The user
+has now confirmed that submitted phase-completion reports count as their UI and UX
+approval for each report's tested Demo scope, and all Phases 00–15 are approved.
+See `UI_UX_REVIEW_GATE.md` and `PROJECT_STATE.json`. Live integration and production
+readiness remain blocked. The current request authorizes documentation and handoff
+only; do not start backend implementation, deployment or another phase.
+
 ## Current authorization and scope
 Build only the reviewable Stage 1 prototype described in `docs/PROTOTYPE_SCOPE.md`.
 Read `docs/APPROVAL_GATE.md` and `docs/ACCEPTANCE.md` before implementation.
