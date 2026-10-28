@@ -1,6 +1,6 @@
 # Phase 15 — final UI audit and integration readiness
 
-Date: 2026-10-28. Status: **awaiting_ui_ux_review**. Phase 14 UI and UX were explicitly approved by the user for tested local Demo flows. Phase 15 Demo UI: **PASS for automated local coverage**. Contract readiness: **BLOCKED**. Live integration: **BLOCKED / not executed**. Final user acceptance: **pending**.
+Date: 2026-10-28. Status: **approved_local_demo_ui_ux**. Phase 15 Demo UI: **PASS for automated local coverage** and explicitly accepted by the user. Contract readiness: **BLOCKED**. Live integration: **BLOCKED / not executed**. Production readiness: **BLOCKED**.
 
 ## Outcome and source changes
 
@@ -57,4 +57,4 @@ Known limitations: a large initial JS chunk; no proven browser virtualization or
 
 ## Separate user approvals
 
-Phase 14 UI: **approved**; Phase 14 UX: **approved**, per the user's Phase 15 request. Phase 15 UI: **pending**. Phase 15 UX: **pending**. Follow `PHASE15_UAT.md`. This report does not mark final user acceptance or Production readiness.
+Phase 14 UI and UX: **approved**. Phase 15 local Demo UI: **approved**; Phase 15 local Demo UX: **approved**. The user's approval message was: “I explicitly approve the final UI and UX of the Phase 15 local Demo.” Reviewed source commit: `df57ad77b0111926ebb4bc90d598b65395deee7b`, with a clean working tree at the time of approval. `UI_HANDOFF.md` records exact reproduction and reset steps; `ENGINE_INTEGRATION_BACKLOG.md` records the proposed first Live slice and blockers. This approval does not establish Live integration or Production readiness.
