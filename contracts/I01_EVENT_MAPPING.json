@@ -1,0 +1,42 @@
+{
+  "specVersion": "i01a-proposed-1",
+  "status": "proposed-bff-mapping-not-live-verified",
+  "engineRevision": "96776c8ef8f444c6a3872e2f592c56363c66f004",
+  "engineOperation": "projectEventStream",
+  "enginePath": "/v1/orgs/{org}/projects/{project}/events",
+  "browserPath": "/api/ep/v1/orgs/{org}/projects/{project}/events",
+  "cursor": {
+    "source": "SSE id frame",
+    "resume": "Last-Event-ID at Engine; browser EventSource Last-Event-ID or BFF after query on reconnect",
+    "distinctFrom": ["data.event_id", "data.aggregate_version"],
+    "persistOnlyAfter": "scope, schema version and payload validation",
+    "scope": ["org_id", "project_id", "permission_revision"]
+  },
+  "dataFields": {
+    "event_id": "eventId",
+    "event_type": "engineEventType",
+    "schema_version": "schemaVersion",
+    "org_id": "orgId",
+    "project_id": "projectId",
+    "aggregate_id": "aggregateId",
+    "aggregate_version": "aggregateVersion",
+    "permission_revision": "permissionRevision",
+    "correlation_id": "correlationId",
+    "occurred_at": "occurredAt",
+    "payload.changed_fields": "changedFields",
+    "payload.resource_ref": "resourceRef"
+  },
+  "events": {
+    "work_item.created.v1": {"uiEventType": "WorkItemUpdated", "action": "invalidate-or-refetch", "requires": ["event_id", "schema_version", "org_id", "project_id", "aggregate_id", "aggregate_version", "permission_revision"]},
+    "work_item.transitioned.v1": {"uiEventType": "WorkItemUpdated", "action": "invalidate-or-refetch", "requires": ["event_id", "schema_version", "org_id", "project_id", "aggregate_id", "aggregate_version", "permission_revision"]},
+    "stream_reset": {"uiEventType": "stream_reset", "action": "discard-cursor-and-authorized-snapshot", "payload": "{}"},
+    "access_revoked": {"uiEventType": "PermissionChanged", "action": "close-stream-and-purge-scope", "payload": "{}"},
+    "stream_unavailable": {"uiEventType": null, "action": "close-stream-and-bounded-retry-with-current-session", "payload": "{}"}
+  },
+  "unknownEvent": "close-or-authorized-refetch; never treat as receipt or committed success",
+  "scopeMismatch": "discard frame, close affected stream and require fresh authorization",
+  "permissionRevisionChange": "purge scoped cache and selection before authorized refetch",
+  "duplicateOrOldVersion": "ignore after scope check",
+  "versionGap": "authorized refetch",
+  "eventIsReceipt": false
+}

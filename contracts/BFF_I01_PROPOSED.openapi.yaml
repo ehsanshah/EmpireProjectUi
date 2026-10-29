@@ -1,0 +1,333 @@
+openapi: 3.1.0
+info:
+  title: EmpireProject I01 browser BFF proposal
+  version: 0.2.0-i01b
+  description: >
+    I01-B session/project handlers are implemented in the Engine checkout's
+    services/gateway/gateway package with injected provider interfaces and isolated
+    tests. No real identity provider, persistent session store, runtime gateway
+    composition, authorized staging or Live authorization is verified. Other I01
+    operations remain proposals.
+    Engine operations named in x-engine are present in the local checkout at
+    6ff9b5eaf7df5a9f3dc94260fd6d2531ab9456ee, not in an authorized staging environment.
+x-contract-status: partial-i01b-implementation-unconfigured
+x-engine-revision: 6ff9b5eaf7df5a9f3dc94260fd6d2531ab9456ee
+x-project-access-openapi-sha256: 085e827e8626dc3c0b1f3b5b4a09fbb37ac11de46ae4941472079db6761b73c3
+servers:
+  - url: /
+security:
+  - sessionCookie: []
+paths:
+  /api/session:
+    get:
+      operationId: proposedGetSession
+      x-implementation-status: handler-implemented-provider-unconfigured
+      x-engine: {status: missing, operationId: null}
+      responses:
+        '200': {description: Authenticated browser session, content: {application/json: {schema: {$ref: '#/components/schemas/Session'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+  /api/session/logout:
+    post:
+      operationId: proposedLogout
+      x-implementation-status: handler-implemented-provider-unconfigured
+      x-engine: {status: missing, operationId: null}
+      parameters: [{$ref: '#/components/parameters/Csrf'}, {$ref: '#/components/parameters/Origin'}]
+      responses:
+        '204': {description: Session invalidated; browser clears scoped caches and streams}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/capabilities:
+    parameters: [{$ref: '#/components/parameters/Org'}]
+    get:
+      operationId: proposedGetCapabilities
+      x-implementation-status: returns-501-unavailable
+      x-engine: {status: missing, operationId: null}
+      responses:
+        '200': {description: Current authorized capabilities and revisions, content: {application/json: {schema: {$ref: '#/components/schemas/CapabilitiesEnvelope'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+        '501': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects:
+    parameters: [{$ref: '#/components/parameters/Org'}]
+    get:
+      operationId: proposedListProjects
+      x-implementation-status: handler-and-typed-mapper-implemented-provider-unconfigured
+      x-engine: {service: project-access, operationId: listProjects, status: verified-local-contract}
+      parameters: [{$ref: '#/components/parameters/Limit'}, {$ref: '#/components/parameters/Cursor'}]
+      responses:
+        '200': {description: Authorized project page and exact or qualified count, content: {application/json: {schema: {$ref: '#/components/schemas/ProjectPage'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}]
+    get:
+      operationId: proposedGetProject
+      x-implementation-status: handler-and-typed-mapper-implemented-provider-unconfigured
+      x-engine: {service: project-access, operationId: getProject, status: verified-local-contract}
+      responses:
+        '200': {description: Authorized canonical project, content: {application/json: {schema: {$ref: '#/components/schemas/ProjectEnvelope'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '404': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/view-queries:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}]
+    post:
+      operationId: proposedQueryWorkset
+      x-engine: {service: work-core, operationId: queryView, status: verified-local-contract}
+      description: Read-only POST; cookie BFF still validates Origin and CSRF. Unsupported UI controls receive a typed error.
+      parameters: [{$ref: '#/components/parameters/Csrf'}, {$ref: '#/components/parameters/Origin'}]
+      requestBody: {required: true, content: {application/json: {schema: {$ref: '#/components/schemas/ViewQuery'}}}}
+      responses:
+        '200': {description: One Engine snapshot; workset count is never page length, content: {application/json: {schema: {$ref: '#/components/schemas/WorksetPage'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+        '409': {$ref: '#/components/responses/Problem'}
+        '422': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/work-items:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}]
+    get:
+      operationId: proposedListWorkItems
+      x-engine: {service: work-core, operationId: listWorkItems, status: verified-local-contract}
+      parameters: [{$ref: '#/components/parameters/Limit'}, {$ref: '#/components/parameters/Cursor'}]
+      responses:
+        '200': {description: Sequence-ordered authorized page, content: {application/json: {schema: {$ref: '#/components/schemas/WorkItemPage'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/work-items/by-key/{key}:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}, {$ref: '#/components/parameters/Key'}]
+    get:
+      operationId: proposedResolveWorkItemKey
+      x-engine: {status: missing, operationId: null}
+      description: Requires an authorized canonical key or alias resolver. Fixed Sprint lookup is forbidden.
+      responses:
+        '200': {description: Canonical item identity, content: {application/json: {schema: {$ref: '#/components/schemas/KeyResolution'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '404': {$ref: '#/components/responses/Problem'}
+        '501': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/work-items/{item}:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}, {$ref: '#/components/parameters/Item'}]
+    get:
+      operationId: proposedGetWorkItem
+      x-engine: {service: work-core, operationId: getWorkItem, status: verified-local-contract}
+      responses:
+        '200': {description: Canonical item and strong ETag, headers: {ETag: {schema: {type: string}}}, content: {application/json: {schema: {$ref: '#/components/schemas/WorkItemEnvelope'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+        '404': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/work-items/{item}/transitions:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}, {$ref: '#/components/parameters/Item'}]
+    get:
+      operationId: proposedListAvailableTransitions
+      x-engine: {service: work-core, operationId: listAvailableTransitions, status: verified-local-contract}
+      responses:
+        '200': {description: Authorized choices, without verified required-field screen schema, content: {application/json: {schema: {$ref: '#/components/schemas/TransitionChoices'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+    post:
+      operationId: proposedTransitionWorkItem
+      x-engine: {service: work-core, operationId: transitionWorkItem, status: verified-local-contract-with-gap}
+      description: >
+        Engine currently accepts transition_id and optional reason only. Nonempty fields or a
+        transition requiring a screen MUST fail closed until Engine supplies a versioned screen
+        schema and atomic field-bearing command. BFF must never strip fields.
+      parameters: [{$ref: '#/components/parameters/Csrf'}, {$ref: '#/components/parameters/Origin'}, {$ref: '#/components/parameters/IfMatch'}, {$ref: '#/components/parameters/IdempotencyKey'}]
+      requestBody: {required: true, content: {application/json: {schema: {$ref: '#/components/schemas/TransitionInput'}}}}
+      responses:
+        '200': {description: Applied only with Engine receipt, headers: {ETag: {schema: {type: string}}}, content: {application/json: {schema: {$ref: '#/components/schemas/TransitionResult'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+        '409': {$ref: '#/components/responses/Problem'}
+        '412': {$ref: '#/components/responses/Problem'}
+        '422': {$ref: '#/components/responses/Problem'}
+        '428': {$ref: '#/components/responses/Problem'}
+        '501': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/work-items/{item}/activity:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}, {$ref: '#/components/parameters/Item'}]
+    get:
+      operationId: proposedGetWorkItemActivity
+      x-engine: {service: work-core, operationId: workItemHistory, status: verified-local-contract}
+      responses:
+        '200': {description: Authorized versioned history; unknown before/after fields remain unknown, content: {application/json: {schema: {$ref: '#/components/schemas/ActivityPage'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/work-item-commands/by-key:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}]
+    get:
+      operationId: proposedRecoverWorkItemCommand
+      x-engine: {service: work-core, operationId: wcCommandByKey, status: verified-local-contract}
+      parameters: [{name: key, in: query, required: true, schema: {type: string}}]
+      description: Route to work-core owner; verify returned route and project before exposing stored response.
+      responses:
+        '200': {description: Stored outcome, not automatically a success receipt, content: {application/json: {schema: {$ref: '#/components/schemas/CommandOutcome'}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+        '404': {$ref: '#/components/responses/Problem'}
+  /api/ep/v1/orgs/{org}/projects/{project}/events:
+    parameters: [{$ref: '#/components/parameters/Org'}, {$ref: '#/components/parameters/Project'}]
+    get:
+      operationId: proposedProjectEvents
+      x-engine: {service: work-core, operationId: projectEventStream, status: verified-local-contract}
+      parameters: [{name: after, in: query, schema: {type: string}, description: Opaque SSE cursor from last authorized event; not event_id}]
+      responses:
+        '200': {description: Metadata-only SSE. See I01_EVENT_MAPPING.json, content: {text/event-stream: {schema: {type: string}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '403': {$ref: '#/components/responses/Problem'}
+        '422': {$ref: '#/components/responses/Problem'}
+components:
+  securitySchemes:
+    sessionCookie: {type: apiKey, in: cookie, name: ep_session, description: Proposed HttpOnly Secure SameSite cookie; actual name/provider unresolved}
+  parameters:
+    Org: {name: org, in: path, required: true, schema: {type: string}}
+    Project: {name: project, in: path, required: true, schema: {type: string}}
+    Item: {name: item, in: path, required: true, schema: {type: string}}
+    Key: {name: key, in: path, required: true, schema: {type: string}}
+    Limit: {name: limit, in: query, schema: {type: integer, minimum: 1, maximum: 200}}
+    Cursor: {name: cursor, in: query, schema: {type: string}}
+    Csrf: {name: X-CSRF-Token, in: header, required: true, schema: {type: string}}
+    Origin: {name: Origin, in: header, required: true, schema: {type: string, format: uri}}
+    IfMatch: {name: If-Match, in: header, required: true, schema: {type: string}}
+    IdempotencyKey: {name: Idempotency-Key, in: header, required: true, schema: {type: string, format: uuid}}
+  responses:
+    Problem: {description: RFC 9457-style problem with stable code and field_errors where available, content: {application/problem+json: {schema: {$ref: '#/components/schemas/Problem'}}}}
+  schemas:
+    Problem:
+      type: object
+      required: [type, title, status, code]
+      properties:
+        type: {type: string}
+        title: {type: string}
+        status: {type: integer}
+        code: {type: string}
+        detail: {type: string}
+        field_errors: {type: array, items: {type: object, required: [path, code], properties: {path: {type: string}, code: {type: string}, message: {type: string}}}}
+    Session:
+      type: object
+      required: [user_id, org_id, locale, timezone, csrf_token, expires_at]
+      properties:
+        user_id: {type: string}
+        org_id: {type: string}
+        locale: {type: string}
+        timezone: {type: string}
+        csrf_token: {type: string, description: Session-bound non-secret token; never the Engine bearer}
+        expires_at: {type: string, format: date-time}
+    CapabilitiesEnvelope:
+      type: object
+      required: [data]
+      properties:
+        data: {type: object, required: [permission_revision, transitions, activity, events, max_page_size], properties: {permission_revision: {type: string}, schema_revision: {type: [string, 'null']}, transitions: {type: boolean}, activity: {type: boolean}, events: {type: boolean}, max_page_size: {type: integer}}}
+    Meta:
+      type: object
+      required: [request_id, as_of]
+      properties:
+        request_id: {type: string}
+        as_of: {type: string, format: date-time}
+        permission_revision: {type: string}
+        next_cursor: {type: [string, 'null']}
+        count: {$ref: '#/components/schemas/Count'}
+    Count: {type: object, required: [value, relation], properties: {value: {type: integer, minimum: 0}, relation: {type: string, enum: [exact, estimated, unknown]}}}
+    Project:
+      type: object
+      required: [id, org_id, resource_type, resource_ref, key, name, method, timezone, template, owner_principal_id, state, version, permission_revision, custom_data, created_at, updated_at, allowed_actions]
+      properties:
+        id: {type: string}
+        org_id: {type: string}
+        resource_type: {type: string, const: project}
+        resource_ref: {type: string}
+        key: {type: string}
+        name: {type: string}
+        description: {type: string}
+        method: {type: string, enum: [scrum, kanban]}
+        timezone: {type: string}
+        template: {type: string}
+        owner_principal_id: {type: string}
+        state: {type: string}
+        version: {type: integer}
+        permission_revision: {type: integer}
+        custom_data: {type: object}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        allowed_actions: {type: array, items: {type: string}}
+    ProjectPage: {type: object, required: [data, meta], properties: {data: {type: array, items: {$ref: '#/components/schemas/Project'}}, meta: {$ref: '#/components/schemas/Meta'}}}
+    ProjectEnvelope: {type: object, required: [data, meta], properties: {data: {$ref: '#/components/schemas/Project'}, meta: {$ref: '#/components/schemas/Meta'}}}
+    WorkItem:
+      type: object
+      description: Lossless BFF projection of authorized Engine item; no synthetic UI Issue source.
+      required: [id, org_id, project_id, resource_type, resource_ref, key, type, summary, description, status_id, status_category, priority, rank, estimate_points, start_date, due_date, sprint_id, parent_id, security_level, release_id, workflow_version_id, reporter_principal_id, creator_principal_id, version, custom_data, created_at, updated_at, allowed_actions]
+      properties:
+        id: {type: string}
+        org_id: {type: string}
+        project_id: {type: string}
+        resource_type: {type: string, const: work_item}
+        resource_ref: {type: string}
+        key: {type: string}
+        type: {type: string}
+        summary: {type: string}
+        description: {type: string}
+        status_id: {type: string}
+        status_category: {type: string}
+        version: {type: integer}
+        allowed_actions: {type: array, items: {type: string}}
+        priority: {type: [string, 'null']}
+        estimate_points: {type: [string, 'null']}
+        start_date: {$ref: '#/components/schemas/DateValue'}
+        due_date: {$ref: '#/components/schemas/DateValue'}
+        sprint_id: {type: [string, 'null']}
+        parent_id: {type: [string, 'null']}
+        security_level: {type: [string, 'null']}
+        release_id: {type: [string, 'null']}
+        rank: {type: string}
+        workflow_version_id: {type: string}
+        reporter_principal_id: {type: string}
+        creator_principal_id: {type: string}
+        custom_data: {type: object}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    DateValue: {type: [object, 'null'], description: Date-only; never convert to midnight appointment, properties: {kind: {type: string, const: date}, value: {type: string, format: date}}}
+    WorkItemPage: {type: object, required: [data, meta], properties: {data: {type: array, items: {$ref: '#/components/schemas/WorkItem'}}, meta: {$ref: '#/components/schemas/Meta'}}}
+    WorkItemEnvelope: {type: object, required: [data, meta], properties: {data: {$ref: '#/components/schemas/WorkItem'}, meta: {$ref: '#/components/schemas/Meta'}}}
+    KeyResolution: {type: object, required: [data], properties: {data: {type: object, required: [id, key, project_id], properties: {id: {type: string}, key: {type: string}, project_id: {type: string}, alias_used: {type: boolean}}}}}
+    ViewQuery:
+      type: object
+      required: [kind]
+      description: Engine QueryPlan allowlist only; no raw SQL, text search, arbitrary grouping or client-side count substitution.
+      properties:
+        kind: {type: string, enum: [list, calendar, timeline]}
+        query: {$ref: '#/components/schemas/QueryNode'}
+        sort: {type: object, properties: {field: {type: string, enum: [rank, priority, due_date, start_date, created_at, key]}, dir: {type: string, enum: [asc, desc]}}}
+        window: {type: object, required: [from, to], properties: {from: {$ref: '#/components/schemas/DateValue'}, to: {$ref: '#/components/schemas/DateValue'}}}
+        date_field: {type: string, enum: [due, start, start_and_due]}
+        bucket: {type: string, enum: [rendered, unscheduled, outside_window]}
+        limit: {type: integer, minimum: 1}
+        cursor: {type: string}
+    QueryNode:
+      type: object
+      additionalProperties: false
+      required: [op]
+      properties:
+        field: {type: string, enum: [priority, status_category, status_id, type, sprint_id, parent_id, due_date, start_date, estimate_points, status_was, status_changed]}
+        op: {type: string, enum: [and, or, eq, ne, in, is_null, not_null, before, after, on_or_before, on_or_after, between, gte, lte, within]}
+        value: {}
+        args: {type: array, maxItems: 50, items: {$ref: '#/components/schemas/QueryNode'}}
+    WorksetCounts:
+      type: object
+      required: [workset_count, rendered_count, status_valid_count, status_invalid_count, page_count]
+      properties:
+        workset_count: {type: integer, minimum: 0}
+        rendered_count: {type: integer, minimum: 0}
+        unscheduled_count: {type: integer, minimum: 0}
+        outside_window_count: {type: integer, minimum: 0}
+        status_valid_count: {type: integer, minimum: 0}
+        status_invalid_count: {type: integer, minimum: 0}
+        page_count: {type: integer, minimum: 0}
+    WorksetPage:
+      type: object
+      required: [data, meta]
+      properties:
+        data: {type: object, required: [kind, query_plan_hash, timezone, today, bucket, sort, counts, items, watermark, snapshot_changed, evaluated_at, resolved_windows, warnings], properties: {kind: {type: string}, query_plan_hash: {type: string}, timezone: {type: string}, today: {$ref: '#/components/schemas/DateValue'}, bucket: {type: string}, sort: {type: object}, counts: {$ref: '#/components/schemas/WorksetCounts'}, items: {type: array, items: {$ref: '#/components/schemas/ViewRow'}}, watermark: {type: integer}, snapshot_changed: {type: boolean}, evaluated_at: {type: string, format: date-time}, resolved_windows: {type: array, items: {type: object}}, warnings: {type: array, items: {type: string}}}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    ViewRow: {type: object, required: [item, bucket, status_invalid, overdue, blocked, warnings, dependencies], properties: {item: {$ref: '#/components/schemas/WorkItem'}, bucket: {type: string, enum: [rendered, unscheduled, outside_window]}, status_invalid: {type: boolean}, overdue: {type: boolean}, blocked: {type: boolean}, warnings: {type: array, items: {type: string}}, dependencies: {type: array, items: {type: object}}, shape: {type: string}}}
+    TransitionChoices: {type: object, required: [data, meta], properties: {data: {type: array, items: {type: object, required: [id, name, from, to, to_category], properties: {id: {type: string}, name: {type: string}, from: {type: string}, to: {type: string}, to_category: {type: string}}}}, meta: {$ref: '#/components/schemas/Meta'}}}
+    TransitionInput: {type: object, additionalProperties: false, required: [transition_id], properties: {transition_id: {type: string}, reason: {type: string}, fields: {type: object, description: Proposed extension; nonempty fields fail closed against current Engine}}}
+    Receipt: {type: object, required: [id, command_id, outcome, resource_type, resource_id, resource_version, audit_ref], properties: {id: {type: string}, command_id: {type: string}, outcome: {type: string, const: applied}, resource_type: {type: string}, resource_id: {type: string}, resource_version: {type: integer}, audit_ref: {type: string}}}
+    TransitionResult: {type: object, required: [data, meta], properties: {data: {type: object, required: [resource, receipt], properties: {resource: {$ref: '#/components/schemas/WorkItem'}, receipt: {$ref: '#/components/schemas/Receipt'}, warnings: {type: array, items: {type: string}}}}, meta: {$ref: '#/components/schemas/Meta'}}}
+    ActivityPage: {type: object, required: [data, meta], properties: {data: {type: array, items: {type: object, required: [event_id, event_type, change_kind, occurred_at, actor_principal_id, after, changed_fields], properties: {event_id: {type: string}, event_type: {type: string}, change_kind: {type: string}, occurred_at: {type: string, format: date-time}, actor_principal_id: {type: string}, aggregate_version: {type: integer}, before: {}, after: {}, changed_fields: {type: array, items: {type: string}}, reason: {type: [string, 'null']}}}}, meta: {$ref: '#/components/schemas/Meta'}}}
+    CommandOutcome: {type: object, required: [data, meta], properties: {data: {type: object, required: [idempotency_key, route, status, response], properties: {idempotency_key: {type: string}, route: {type: string}, status: {type: integer}, response: {description: Original stored response; validate against the owning operation before projecting receipt}}}, meta: {$ref: '#/components/schemas/Meta'}}}
