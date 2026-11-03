@@ -35,6 +35,7 @@ test('Settings draft validates, approval remains separate from publication, Back
 test('Workflow errors, connections and RTL mobile remain visible and keyboard accessible',async({page})=>{
  await page.goto(`${base}/settings?design=current&section=workflow`);
  await page.getByRole('button',{name:'Create draft'}).click();
+ await page.getByRole('button',{name:'Modular settings',exact:true}).click();
  await page.getByLabel('Required field on review → completed').fill('missing-field');
  await page.getByRole('button',{name:'Save draft revision'}).click();
  await page.getByRole('button',{name:'Validate & preview migration'}).click();
